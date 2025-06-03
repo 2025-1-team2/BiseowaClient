@@ -1,0 +1,6 @@
+framework module Pods_BiseowaClientTests {
+  umbrella header "Pods-BiseowaClientTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

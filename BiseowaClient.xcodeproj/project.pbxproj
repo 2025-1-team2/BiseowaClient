@@ -12,6 +12,9 @@
 		07F41C9F2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41C9E2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion */; };
 		07F41CA12DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41CA02DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		07F41CA32DEF55CB00AD3F1F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41CA22DEF55CB00AD3F1F /* FirebaseAppCheck */; };
+		2676A1C188E9CAE82948D82B /* Pods_BiseowaClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */; };
+		90B3FE0CDB634F2B2ED96507 /* Pods_BiseowaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */; };
+		C6FC26A0C8ADFE54DC2D4845 /* Pods_BiseowaClient_BiseowaClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,9 +35,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClientTests.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClientTests/Pods-BiseowaClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		07F41BF52DEF216900AD3F1F /* BiseowaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiseowaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
+		3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClientTests.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClientTests/Pods-BiseowaClientTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig"; sourceTree = "<group>"; };
+		513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient_BiseowaClientUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
+		84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -58,11 +70,15 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -78,6 +94,7 @@
 				07F41C9B2DEF55CB00AD3F1F /* FirebaseAI in Frameworks */,
 				07F41CA32DEF55CB00AD3F1F /* FirebaseAppCheck in Frameworks */,
 				07F41CA12DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				90B3FE0CDB634F2B2ED96507 /* Pods_BiseowaClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2676A1C188E9CAE82948D82B /* Pods_BiseowaClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6FC26A0C8ADFE54DC2D4845 /* Pods_BiseowaClient_BiseowaClientUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +124,8 @@
 				07F41C052DEF216B00AD3F1F /* BiseowaClientTests */,
 				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
 				07F41BF62DEF216900AD3F1F /* Products */,
+				FE279F7BF6301A66A3EC64A5 /* Pods */,
+				2F1396DA8DA62D3F6BD2C721 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +139,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		2F1396DA8DA62D3F6BD2C721 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */,
+				513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */,
+				84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE279F7BF6301A66A3EC64A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */,
+				19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */,
+				008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */,
+				4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */,
+				3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */,
+				034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +170,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C162DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClient" */;
 			buildPhases = (
+				3F805A29E0FE86501D4CF47C /* [CP] Check Pods Manifest.lock */,
 				07F41BF12DEF216900AD3F1F /* Sources */,
 				07F41BF22DEF216900AD3F1F /* Frameworks */,
 				07F41BF32DEF216900AD3F1F /* Resources */,
@@ -152,6 +198,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C192DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientTests" */;
 			buildPhases = (
+				7DC709B7416C6F51B8D2F5BD /* [CP] Check Pods Manifest.lock */,
 				07F41BFE2DEF216B00AD3F1F /* Sources */,
 				07F41BFF2DEF216B00AD3F1F /* Frameworks */,
 				07F41C002DEF216B00AD3F1F /* Resources */,
@@ -165,8 +212,6 @@
 				07F41C052DEF216B00AD3F1F /* BiseowaClientTests */,
 			);
 			name = BiseowaClientTests;
-			packageProductDependencies = (
-			);
 			productName = BiseowaClientTests;
 			productReference = 07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -175,6 +220,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C1C2DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientUITests" */;
 			buildPhases = (
+				53061BC9B3291FED6105E5DD /* [CP] Check Pods Manifest.lock */,
 				07F41C082DEF216B00AD3F1F /* Sources */,
 				07F41C092DEF216B00AD3F1F /* Frameworks */,
 				07F41C0A2DEF216B00AD3F1F /* Resources */,
@@ -188,8 +234,6 @@
 				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
 			);
 			name = BiseowaClientUITests;
-			packageProductDependencies = (
-			);
 			productName = BiseowaClientUITests;
 			productReference = 07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -264,6 +308,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F805A29E0FE86501D4CF47C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BiseowaClient-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53061BC9B3291FED6105E5DD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BiseowaClient-BiseowaClientUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DC709B7416C6F51B8D2F5BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BiseowaClientTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07F41BF12DEF216900AD3F1F /* Sources */ = {
@@ -424,6 +537,7 @@
 		};
 		07F41C172DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +566,7 @@
 		};
 		07F41C182DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -480,6 +595,7 @@
 		};
 		07F41C1A2DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -498,6 +614,7 @@
 		};
 		07F41C1B2DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -516,6 +633,7 @@
 		};
 		07F41C1D2DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -532,6 +650,7 @@
 		};
 		07F41C1E2DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
