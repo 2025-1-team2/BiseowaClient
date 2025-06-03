@@ -70,15 +70,11 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -159,7 +155,6 @@
 				3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */,
 				034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
