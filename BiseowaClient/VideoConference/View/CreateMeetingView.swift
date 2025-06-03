@@ -1,97 +1,126 @@
-//
-//  CreateMeetingView.swift
-//  MeetingApp
-//
-//  Created by 정수인 on 5/29/25.
-//
-
 import SwiftUI
 
-
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(
-            roundedRect: rect,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: radius, height: radius)
-        )
-        return Path(path.cgPath)
-    }
-}
-
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
-    }
-}
-
-
 struct CreateMeetingView: View {
-    @State private var address: String = ""
-    @State private var password: String = ""
-    
+    @State private var meetingURL: String = ""
+    @State private var meetingPassword: String = ""
+
     var body: some View {
-        GeometryReader { geometry in
+        ZStack(alignment: .top) {
+            Color("BackgroundMint")
+                .ignoresSafeArea()
+
             VStack(spacing: 0) {
-                // 상단 민트 배경 영역
-                ZStack(alignment: .top) {
-                    // 민트색 배경
-                    Color("BackgroundMint")
-                        .ignoresSafeArea()
+                // 상단 로고 및 인삿말
+                VStack(spacing: 12) {
+                    Spacer().frame(height: 60)
 
-                    VStack(spacing: 16) {
-                        Spacer().frame(height: 40) // 상단 여백
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 64, height: 75)
 
-                        // 로고 + 텍스트
-                        VStack(spacing: 4) {
-                            Image("logo")
-                                .resizable()
-                                .frame(width: 64, height: 64)
+                    Text("비서와")
+                        .font(.custom("Pretendard-Bold", size: 24))
 
-                            Text("비서와")
-                                .font(.custom("Pretendard-Bold", size: 24))
+                    Text("회의를 생성해볼까요?")
+                        .font(.custom("Pretendard-Light", size: 15))
+                        .foregroundColor(.gray)
 
-                            Text("회의를 만들어볼까요?")
-                                .font(.custom("Pretendard-Light", size: 15))
-                                .foregroundColor(.gray)
+                    HStack(spacing: 6) {
+                        Circle()
+                            .frame(width: 6, height: 6)
+                            .foregroundColor(.mint)
+                        Circle()
+                            .frame(width: 6, height: 6)
+                            .foregroundColor(.gray.opacity(0.4))
+                    }
+                    .padding(.top, 8)
+                }
+                .frame(maxWidth: .infinity)
+
+                Spacer()
+
+                // 하단 흰색 카드
+                ZStack {
+                    Color.white
+                        .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
+                        .shadow(radius: 3)
+                        .ignoresSafeArea(edges: .bottom)
+
+                    VStack(alignment: .leading, spacing: 20) {
+                        // 회의방 주소
+                        Text("회의방 주소")
+                            .font(.custom("Pretendard-Regular", size: 14))
+
+                        ZStack(alignment: .trailing) {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(Color(.systemGray6))
+                                .frame(height: 40)
+                                .overlay(
+                                    TextField("회의 링크를 입력하세요", text: $meetingURL)
+                                        .font(.custom("Pretendard-Light", size: 14))
+                                        .padding(.horizontal, 12),
+                                    alignment: .leading
+                                )
+
+                            Text(meetingURL)
+                                .font(.custom("Pretendard-Light", size: 14))
+                                .padding(.leading, 12)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+
+                            Button(action: {
+                                UIPasteboard.general.string = meetingURL
+                            }) {
+                                Image(systemName: "doc.on.doc.fill")
+                                    .foregroundColor(.white)
+                                    .padding(10)
+                                    .background(Color("MypageButtonGreen"))
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    
+                            }
+                            .offset(y:-60)
+                            .padding(.trailing, 8)
                         }
 
-                        Spacer()
-                    }
+                        // 회의방 비밀번호
+                        Text("회의방 비밀번호")
+                            .font(.custom("Pretendard-Regular", size: 14))
 
-                    // 아래 흰색 카드 영역
-                    VStack(spacing: 24) {
-                        TextField("주소", text: .constant(""))
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(.systemGray6))
+                            .frame(height: 40)
+                            .overlay(
+                                Text(meetingPassword)
+                                    .font(.custom("Pretendard-Light", size: 14))
+                                    .padding(.leading, 12),
+                                alignment: .leading
+                            )
+                            .overlay(
+                                TextField("회의 비밀번호를 입력하세요", text: $meetingURL)
+                                    .font(.custom("Pretendard-Light", size: 14))
+                                    .padding(.horizontal, 12),
+                                alignment: .leading
+                            )
 
-                        SecureField("비밀번호", text: .constant(""))
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-
+                        // 회의 참가 버튼
                         Button(action: {
-                            // 회의 생성 액션
+                            // 참가 로직
                         }) {
-                            Text("회의 생성하기")
+                            Text("회의 참가하기")
+                                .font(.custom("Pretendard-Bold", size: 16))
                                 .foregroundColor(.white)
-                                .frame(maxWidth: .infinity)
                                 .padding()
+                                .frame(width: 150)
                                 .background(Color("ButtonNavy"))
                                 .cornerRadius(12)
+                                .shadow(color: .black.opacity(0.15), radius: 2, y: 1)
                         }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.top, 8)
                     }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(24, corners: [.topLeft, .topRight]) // ✨ 핵심
-                    .ignoresSafeArea(edges: .bottom)
-                    .padding(.top, 240) // 로고 영역 피해서 아래로 내림
+                    .padding(.horizontal, 24)
+                    .padding(.top, 32)
                 }
-
+                .frame(height: 500)
             }
         }
     }
