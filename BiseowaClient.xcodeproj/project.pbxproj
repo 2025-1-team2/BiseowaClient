@@ -70,11 +70,15 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -169,6 +173,7 @@
 				07F41BF12DEF216900AD3F1F /* Sources */,
 				07F41BF22DEF216900AD3F1F /* Frameworks */,
 				07F41BF32DEF216900AD3F1F /* Resources */,
+				D07D4D480EFC339A38C3DFF0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,6 +224,7 @@
 				07F41C082DEF216B00AD3F1F /* Sources */,
 				07F41C092DEF216B00AD3F1F /* Frameworks */,
 				07F41C0A2DEF216B00AD3F1F /* Resources */,
+				EF97AAB2133DCD72E7B2E154 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -369,6 +375,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D07D4D480EFC339A38C3DFF0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF97AAB2133DCD72E7B2E154 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
