@@ -1,7 +1,6 @@
 //
 //  SplashView.swift
-//  MeetingApp
-//
+//  런치 화면 
 //  Created by 정수인 on 5/29/25.
 //
 
