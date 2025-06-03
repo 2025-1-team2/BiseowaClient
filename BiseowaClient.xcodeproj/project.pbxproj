@@ -7,14 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07F41C9B2DEF55CB00AD3F1F /* FirebaseAI in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41C9A2DEF55CB00AD3F1F /* FirebaseAI */; };
-		07F41C9D2DEF55CB00AD3F1F /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41C9C2DEF55CB00AD3F1F /* FirebaseAnalytics */; };
-		07F41C9F2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41C9E2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion */; };
-		07F41CA12DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41CA02DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport */; };
-		07F41CA32DEF55CB00AD3F1F /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 07F41CA22DEF55CB00AD3F1F /* FirebaseAppCheck */; };
-		2676A1C188E9CAE82948D82B /* Pods_BiseowaClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */; };
-		90B3FE0CDB634F2B2ED96507 /* Pods_BiseowaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */; };
-		C6FC26A0C8ADFE54DC2D4845 /* Pods_BiseowaClient_BiseowaClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */; };
+		ECC36BBAC2BE9600B9C08218 /* Pods_BiseowaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +28,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClientTests.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClientTests/Pods-BiseowaClientTests.release.xcconfig"; sourceTree = "<group>"; };
 		07F41BF52DEF216900AD3F1F /* BiseowaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiseowaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
-		3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClientTests.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClientTests/Pods-BiseowaClientTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig"; sourceTree = "<group>"; };
-		513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient_BiseowaClientUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
-		84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
+		EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -70,15 +57,11 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -89,12 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F41C9D2DEF55CB00AD3F1F /* FirebaseAnalytics in Frameworks */,
-				07F41C9F2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
-				07F41C9B2DEF55CB00AD3F1F /* FirebaseAI in Frameworks */,
-				07F41CA32DEF55CB00AD3F1F /* FirebaseAppCheck in Frameworks */,
-				07F41CA12DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
-				90B3FE0CDB634F2B2ED96507 /* Pods_BiseowaClient.framework in Frameworks */,
+				ECC36BBAC2BE9600B9C08218 /* Pods_BiseowaClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2676A1C188E9CAE82948D82B /* Pods_BiseowaClientTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,7 +87,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6FC26A0C8ADFE54DC2D4845 /* Pods_BiseowaClient_BiseowaClientUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +101,7 @@
 				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
 				07F41BF62DEF216900AD3F1F /* Products */,
 				FE279F7BF6301A66A3EC64A5 /* Pods */,
-				2F1396DA8DA62D3F6BD2C721 /* Frameworks */,
+				9856030C459F36459381C47C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,12 +115,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2F1396DA8DA62D3F6BD2C721 /* Frameworks */ = {
+		9856030C459F36459381C47C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				93B29571CC7EF7F51CD1BF95 /* Pods_BiseowaClient.framework */,
-				513B429F756885AC59EA80D4 /* Pods_BiseowaClient_BiseowaClientUITests.framework */,
-				84C87E71CE2316DD4ECFF081 /* Pods_BiseowaClientTests.framework */,
+				0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,12 +126,8 @@
 		FE279F7BF6301A66A3EC64A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */,
-				19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */,
-				008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */,
-				4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */,
-				3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */,
-				034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */,
+				353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */,
+				EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -169,11 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C162DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClient" */;
 			buildPhases = (
-				3F805A29E0FE86501D4CF47C /* [CP] Check Pods Manifest.lock */,
+				3F6B484ECF90E7DEDA39865B /* [CP] Check Pods Manifest.lock */,
 				07F41BF12DEF216900AD3F1F /* Sources */,
 				07F41BF22DEF216900AD3F1F /* Frameworks */,
 				07F41BF32DEF216900AD3F1F /* Resources */,
-				D07D4D480EFC339A38C3DFF0 /* [CP] Embed Pods Frameworks */,
+				A6F080564CE53141D0F74F98 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,13 +153,6 @@
 				07F41BF72DEF216900AD3F1F /* BiseowaClient */,
 			);
 			name = BiseowaClient;
-			packageProductDependencies = (
-				07F41C9A2DEF55CB00AD3F1F /* FirebaseAI */,
-				07F41C9C2DEF55CB00AD3F1F /* FirebaseAnalytics */,
-				07F41C9E2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion */,
-				07F41CA02DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport */,
-				07F41CA22DEF55CB00AD3F1F /* FirebaseAppCheck */,
-			);
 			productName = BiseowaClient;
 			productReference = 07F41BF52DEF216900AD3F1F /* BiseowaClient.app */;
 			productType = "com.apple.product-type.application";
@@ -198,7 +161,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C192DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientTests" */;
 			buildPhases = (
-				7DC709B7416C6F51B8D2F5BD /* [CP] Check Pods Manifest.lock */,
 				07F41BFE2DEF216B00AD3F1F /* Sources */,
 				07F41BFF2DEF216B00AD3F1F /* Frameworks */,
 				07F41C002DEF216B00AD3F1F /* Resources */,
@@ -220,11 +182,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C1C2DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientUITests" */;
 			buildPhases = (
-				53061BC9B3291FED6105E5DD /* [CP] Check Pods Manifest.lock */,
 				07F41C082DEF216B00AD3F1F /* Sources */,
 				07F41C092DEF216B00AD3F1F /* Frameworks */,
 				07F41C0A2DEF216B00AD3F1F /* Resources */,
-				EF97AAB2133DCD72E7B2E154 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -271,9 +231,6 @@
 			);
 			mainGroup = 07F41BEC2DEF216900AD3F1F;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 07F41BF62DEF216900AD3F1F /* Products */;
 			projectDirPath = "";
@@ -311,7 +268,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F805A29E0FE86501D4CF47C /* [CP] Check Pods Manifest.lock */ = {
+		3F6B484ECF90E7DEDA39865B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -333,51 +290,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		53061BC9B3291FED6105E5DD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BiseowaClient-BiseowaClientUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7DC709B7416C6F51B8D2F5BD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BiseowaClientTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D07D4D480EFC339A38C3DFF0 /* [CP] Embed Pods Frameworks */ = {
+		A6F080564CE53141D0F74F98 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -385,30 +298,17 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EF97AAB2133DCD72E7B2E154 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient-BiseowaClientUITests/Pods-BiseowaClient-BiseowaClientUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -488,7 +388,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -551,7 +451,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -572,7 +472,7 @@
 		};
 		07F41C172DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E62D2DA0CCAC062597D33AF /* Pods-BiseowaClient.debug.xcconfig */;
+			baseConfigurationReference = 353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -601,7 +501,7 @@
 		};
 		07F41C182DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19CF872CDD89D48E0F9EB9AB /* Pods-BiseowaClient.release.xcconfig */;
+			baseConfigurationReference = EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -630,7 +530,6 @@
 		};
 		07F41C1A2DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A76DC3E12B9495113AE7D87 /* Pods-BiseowaClientTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -649,7 +548,6 @@
 		};
 		07F41C1B2DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 034373B56D1D46E3989F3185 /* Pods-BiseowaClientTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -668,7 +566,6 @@
 		};
 		07F41C1D2DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 008788EFE8DB29E64A2C5184 /* Pods-BiseowaClient-BiseowaClientUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -685,7 +582,6 @@
 		};
 		07F41C1E2DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4DA983901E39F13085231575 /* Pods-BiseowaClient-BiseowaClientUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -740,45 +636,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.13.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		07F41C9A2DEF55CB00AD3F1F /* FirebaseAI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAI;
-		};
-		07F41C9C2DEF55CB00AD3F1F /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		07F41C9E2DEF55CB00AD3F1F /* FirebaseAnalyticsOnDeviceConversion */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsOnDeviceConversion;
-		};
-		07F41CA02DEF55CB00AD3F1F /* FirebaseAnalyticsWithoutAdIdSupport */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsWithoutAdIdSupport;
-		};
-		07F41CA22DEF55CB00AD3F1F /* FirebaseAppCheck */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 07F41C992DEF55CB00AD3F1F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAppCheck;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 07F41BED2DEF216900AD3F1F /* Project object */;
 }

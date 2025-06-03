@@ -8,15 +8,4 @@ target 'BiseowaClient' do
   pod 'Firebase/Auth'
   pod 'GoogleSignIn' 
 
-  # Pods for BiseowaClient
-
-  target 'BiseowaClientTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'BiseowaClientUITests' do
-    # Pods for testing
-  end
-
 end
