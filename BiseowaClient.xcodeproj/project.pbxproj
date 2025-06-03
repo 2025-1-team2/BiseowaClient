@@ -1,0 +1,555 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		07F41C032DEF216B00AD3F1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F41BED2DEF216900AD3F1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07F41BF42DEF216900AD3F1F;
+			remoteInfo = BiseowaClient;
+		};
+		07F41C0D2DEF216B00AD3F1F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 07F41BED2DEF216900AD3F1F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 07F41BF42DEF216900AD3F1F;
+			remoteInfo = BiseowaClient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		07F41BF52DEF216900AD3F1F /* BiseowaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiseowaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		07F41BF72DEF216900AD3F1F /* BiseowaClient */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BiseowaClient;
+			sourceTree = "<group>";
+		};
+		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BiseowaClientTests;
+			sourceTree = "<group>";
+		};
+		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BiseowaClientUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		07F41BF22DEF216900AD3F1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41BFF2DEF216B00AD3F1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41C092DEF216B00AD3F1F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		07F41BEC2DEF216900AD3F1F = {
+			isa = PBXGroup;
+			children = (
+				07F41BF72DEF216900AD3F1F /* BiseowaClient */,
+				07F41C052DEF216B00AD3F1F /* BiseowaClientTests */,
+				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
+				07F41BF62DEF216900AD3F1F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		07F41BF62DEF216900AD3F1F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				07F41BF52DEF216900AD3F1F /* BiseowaClient.app */,
+				07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */,
+				07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		07F41BF42DEF216900AD3F1F /* BiseowaClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F41C162DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClient" */;
+			buildPhases = (
+				07F41BF12DEF216900AD3F1F /* Sources */,
+				07F41BF22DEF216900AD3F1F /* Frameworks */,
+				07F41BF32DEF216900AD3F1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				07F41BF72DEF216900AD3F1F /* BiseowaClient */,
+			);
+			name = BiseowaClient;
+			packageProductDependencies = (
+			);
+			productName = BiseowaClient;
+			productReference = 07F41BF52DEF216900AD3F1F /* BiseowaClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+		07F41C012DEF216B00AD3F1F /* BiseowaClientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F41C192DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientTests" */;
+			buildPhases = (
+				07F41BFE2DEF216B00AD3F1F /* Sources */,
+				07F41BFF2DEF216B00AD3F1F /* Frameworks */,
+				07F41C002DEF216B00AD3F1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07F41C042DEF216B00AD3F1F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				07F41C052DEF216B00AD3F1F /* BiseowaClientTests */,
+			);
+			name = BiseowaClientTests;
+			packageProductDependencies = (
+			);
+			productName = BiseowaClientTests;
+			productReference = 07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		07F41C0B2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07F41C1C2DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientUITests" */;
+			buildPhases = (
+				07F41C082DEF216B00AD3F1F /* Sources */,
+				07F41C092DEF216B00AD3F1F /* Frameworks */,
+				07F41C0A2DEF216B00AD3F1F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				07F41C0E2DEF216B00AD3F1F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
+			);
+			name = BiseowaClientUITests;
+			packageProductDependencies = (
+			);
+			productName = BiseowaClientUITests;
+			productReference = 07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		07F41BED2DEF216900AD3F1F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					07F41BF42DEF216900AD3F1F = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					07F41C012DEF216B00AD3F1F = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 07F41BF42DEF216900AD3F1F;
+					};
+					07F41C0B2DEF216B00AD3F1F = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 07F41BF42DEF216900AD3F1F;
+					};
+				};
+			};
+			buildConfigurationList = 07F41BF02DEF216900AD3F1F /* Build configuration list for PBXProject "BiseowaClient" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 07F41BEC2DEF216900AD3F1F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 07F41BF62DEF216900AD3F1F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				07F41BF42DEF216900AD3F1F /* BiseowaClient */,
+				07F41C012DEF216B00AD3F1F /* BiseowaClientTests */,
+				07F41C0B2DEF216B00AD3F1F /* BiseowaClientUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		07F41BF32DEF216900AD3F1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41C002DEF216B00AD3F1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41C0A2DEF216B00AD3F1F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		07F41BF12DEF216900AD3F1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41BFE2DEF216B00AD3F1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		07F41C082DEF216B00AD3F1F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		07F41C042DEF216B00AD3F1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07F41BF42DEF216900AD3F1F /* BiseowaClient */;
+			targetProxy = 07F41C032DEF216B00AD3F1F /* PBXContainerItemProxy */;
+		};
+		07F41C0E2DEF216B00AD3F1F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 07F41BF42DEF216900AD3F1F /* BiseowaClient */;
+			targetProxy = 07F41C0D2DEF216B00AD3F1F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		07F41C142DEF216B00AD3F1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		07F41C152DEF216B00AD3F1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		07F41C172DEF216B00AD3F1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		07F41C182DEF216B00AD3F1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		07F41C1A2DEF216B00AD3F1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiseowaClient.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BiseowaClient";
+			};
+			name = Debug;
+		};
+		07F41C1B2DEF216B00AD3F1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClientTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BiseowaClient.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BiseowaClient";
+			};
+			name = Release;
+		};
+		07F41C1D2DEF216B00AD3F1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BiseowaClient;
+			};
+			name = Debug;
+		};
+		07F41C1E2DEF216B00AD3F1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.team2.BiseowaClientUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BiseowaClient;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		07F41BF02DEF216900AD3F1F /* Build configuration list for PBXProject "BiseowaClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F41C142DEF216B00AD3F1F /* Debug */,
+				07F41C152DEF216B00AD3F1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F41C162DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F41C172DEF216B00AD3F1F /* Debug */,
+				07F41C182DEF216B00AD3F1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F41C192DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F41C1A2DEF216B00AD3F1F /* Debug */,
+				07F41C1B2DEF216B00AD3F1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07F41C1C2DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClientUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07F41C1D2DEF216B00AD3F1F /* Debug */,
+				07F41C1E2DEF216B00AD3F1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 07F41BED2DEF216900AD3F1F /* Project object */;
+}
