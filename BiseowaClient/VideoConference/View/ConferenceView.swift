@@ -133,6 +133,4 @@ struct ConferenceView: View {
 
 
 
-#Preview {
-    ConferenceView()
-}
+
