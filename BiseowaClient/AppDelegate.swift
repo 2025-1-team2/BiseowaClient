@@ -15,10 +15,10 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        application.registerForRemoteNotifications()
+        //application.registerForRemoteNotifications()
         
-        UNUserNotificationCenter.current().delegate = self
-
+        //UNUserNotificationCenter.current().delegate = self
+        print("why??")
         FirebaseApp.configure()
         
         return true
