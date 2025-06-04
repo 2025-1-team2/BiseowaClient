@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ECC36BBAC2BE9600B9C08218 /* Pods_BiseowaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */; };
+		866CDE1202C997CECFB4DAC2 /* Pods_BiseowaClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F0BF0A118C3E37E497403C /* Pods_BiseowaClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,9 +31,9 @@
 		07F41BF52DEF216900AD3F1F /* BiseowaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiseowaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
-		EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
+		99F0BF0A118C3E37E497403C /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA19813661CBA8C02BFDCD5B /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
+		F3F1F1A421A91DDE1FE5C539 /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -57,11 +57,15 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -72,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECC36BBAC2BE9600B9C08218 /* Pods_BiseowaClient.framework in Frameworks */,
+				866CDE1202C997CECFB4DAC2 /* Pods_BiseowaClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,7 +105,7 @@
 				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
 				07F41BF62DEF216900AD3F1F /* Products */,
 				FE279F7BF6301A66A3EC64A5 /* Pods */,
-				9856030C459F36459381C47C /* Frameworks */,
+				D2F625B37630A98521BC53E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,10 +119,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9856030C459F36459381C47C /* Frameworks */ = {
+		D2F625B37630A98521BC53E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0A84B390C343621C94A530EB /* Pods_BiseowaClient.framework */,
+				99F0BF0A118C3E37E497403C /* Pods_BiseowaClient.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -126,8 +130,8 @@
 		FE279F7BF6301A66A3EC64A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */,
-				EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */,
+				F3F1F1A421A91DDE1FE5C539 /* Pods-BiseowaClient.debug.xcconfig */,
+				AA19813661CBA8C02BFDCD5B /* Pods-BiseowaClient.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -139,11 +143,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07F41C162DEF216B00AD3F1F /* Build configuration list for PBXNativeTarget "BiseowaClient" */;
 			buildPhases = (
-				3F6B484ECF90E7DEDA39865B /* [CP] Check Pods Manifest.lock */,
+				6F34DF8F6FF0972D0BBE55BB /* [CP] Check Pods Manifest.lock */,
 				07F41BF12DEF216900AD3F1F /* Sources */,
 				07F41BF22DEF216900AD3F1F /* Frameworks */,
 				07F41BF32DEF216900AD3F1F /* Resources */,
-				A6F080564CE53141D0F74F98 /* [CP] Embed Pods Frameworks */,
+				A2BCB6D1198096BE2B139FB0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,7 +272,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3F6B484ECF90E7DEDA39865B /* [CP] Check Pods Manifest.lock */ = {
+		6F34DF8F6FF0972D0BBE55BB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -290,7 +294,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A6F080564CE53141D0F74F98 /* [CP] Embed Pods Frameworks */ = {
+		A2BCB6D1198096BE2B139FB0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -298,13 +302,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -472,7 +472,7 @@
 		};
 		07F41C172DEF216B00AD3F1F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 353FECB03355011E2D8A1093 /* Pods-BiseowaClient.debug.xcconfig */;
+			baseConfigurationReference = F3F1F1A421A91DDE1FE5C539 /* Pods-BiseowaClient.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -501,7 +501,7 @@
 		};
 		07F41C182DEF216B00AD3F1F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EEA00B910E7A852693D9CE1C /* Pods-BiseowaClient.release.xcconfig */;
+			baseConfigurationReference = AA19813661CBA8C02BFDCD5B /* Pods-BiseowaClient.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
