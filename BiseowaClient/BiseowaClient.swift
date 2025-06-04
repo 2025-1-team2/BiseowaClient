@@ -10,9 +10,10 @@ import SwiftUI
 
 @main
 struct BiseowaClientApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
-            SplashView() // 또는 HomeView()
-        }
+                    LoginView()
+                }
     }
 }

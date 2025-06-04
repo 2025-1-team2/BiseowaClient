@@ -8,40 +8,52 @@
 import SwiftUI
 
 struct LoginView: View {
+    @StateObject private var viewModel = AuthViewModel()
+
     var body: some View {
+        switch viewModel.state {
+        case .unauthenticated, .authenticating:
+            loginContent
+                .overlay {
+                    if viewModel.state == .authenticating {
+                        ProgressView("로그인 중...")
+                    }
+                }
+
+        case .authenticated:
+            HomeView()
+        }
+    }
+
+    var loginContent: some View {
         VStack(spacing: 24) {
             Spacer()
-            
-            // 로고
-            Image("logo") // ← 피그마에서 넣은 이미지 이름
+
+            Image("logo")
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80)
 
-            // 앱 이름
             Text("비서와")
                 .font(.custom("Pretendard-Bold", size: 24))
 
-            // 설명 문구
             Text("함께, 효율적인 회의를 시작해요.")
                 .font(.custom("Pretendard-Light", size: 15))
                 .foregroundColor(.gray)
 
             Spacer().frame(height: 60)
 
-            // 로그인 안내
             Text("로그인 / 회원가입")
                 .font(.custom("Pretendard-SemiBold", size: 16))
-            
-            // 구글 로그인 버튼
+
             Button(action: {
-                // 로그인 액션
+                viewModel.googleLogin()
             }) {
                 HStack {
                     Image("googlelogo")
                         .resizable()
                         .frame(width: 40, height: 20)
-                    
+
                     Text("Google로 시작하기")
                         .font(.custom("Pretendard-Regular", size: 16))
                 }
@@ -57,11 +69,18 @@ struct LoginView: View {
             }
             .padding(.horizontal, 32)
 
+            if let error = viewModel.errorMessage {
+                Text(error)
+                    .foregroundColor(.red)
+                    .font(.caption)
+            }
+
             Spacer()
         }
         .padding()
     }
 }
+
 
 
 #Preview {
