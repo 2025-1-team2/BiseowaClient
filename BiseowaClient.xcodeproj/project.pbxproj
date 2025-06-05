@@ -34,9 +34,6 @@
 		07F41BF52DEF216900AD3F1F /* BiseowaClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BiseowaClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C022DEF216B00AD3F1F /* BiseowaClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BiseowaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		99F0BF0A118C3E37E497403C /* Pods_BiseowaClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BiseowaClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AA19813661CBA8C02BFDCD5B /* Pods-BiseowaClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.release.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.release.xcconfig"; sourceTree = "<group>"; };
-		F3F1F1A421A91DDE1FE5C539 /* Pods-BiseowaClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BiseowaClient.debug.xcconfig"; path = "Target Support Files/Pods-BiseowaClient/Pods-BiseowaClient.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -60,11 +57,15 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -106,8 +107,6 @@
 				07F41C052DEF216B00AD3F1F /* BiseowaClientTests */,
 				07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */,
 				07F41BF62DEF216900AD3F1F /* Products */,
-				FE279F7BF6301A66A3EC64A5 /* Pods */,
-				D2F625B37630A98521BC53E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,23 +118,6 @@
 				07F41C0C2DEF216B00AD3F1F /* BiseowaClientUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		D2F625B37630A98521BC53E0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				99F0BF0A118C3E37E497403C /* Pods_BiseowaClient.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FE279F7BF6301A66A3EC64A5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				F3F1F1A421A91DDE1FE5C539 /* Pods-BiseowaClient.debug.xcconfig */,
-				AA19813661CBA8C02BFDCD5B /* Pods-BiseowaClient.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
