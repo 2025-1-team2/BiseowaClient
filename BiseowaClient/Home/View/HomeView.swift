@@ -35,7 +35,7 @@ struct HomeView: View {
                                 Spacer()
                                 VStack(alignment: .trailing, spacing: 6) {
                                     (
-                                        Text(authViewModel.user?.displayName ?? "사용자")
+                                        Text(authViewModel.user?.name ?? "사용자")
                                         .font(.custom("Pretendard-SemiBold", size: 30))
                                         .bold()
                                      +

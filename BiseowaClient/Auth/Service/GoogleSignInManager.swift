@@ -76,12 +76,20 @@ final class GoogleAuthService {
                 return
             }
 
+//            let appUser = User(
+//                id: user.uid,
+//                name: user.displayName ?? "",
+//                phoneNumber: user.phoneNumber,
+//                profileURL: user.photoURL?.absoluteString
+//            )
             let appUser = User(
                 id: user.uid,
-                name: user.displayName ?? "",
+                // displayName이 없으면 "사용자"라는 기본값을 넣도록 변경
+                name: user.displayName ?? "사용자",
                 phoneNumber: user.phoneNumber,
                 profileURL: user.photoURL?.absoluteString
             )
+            
             completion(.success(appUser))
         }
     }
