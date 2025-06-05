@@ -53,6 +53,7 @@ final class GoogleAuthService {
                     }
             let accessToken = user.accessToken.tokenString
             // 6. Firebase 자격증명 생성 & 로그인
+            print("[GoogleAuthService]")
             let credential = GoogleAuthProvider.credential(
                 withIDToken: idToken,
                 accessToken: accessToken

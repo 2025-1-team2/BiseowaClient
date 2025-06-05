@@ -4,6 +4,7 @@ struct HomeView: View {
     @State private var showCreate = false
     @State private var showJoin = false
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var isLoggingOut = false
 
     var body: some View {
         NavigationStack {
@@ -118,21 +119,28 @@ struct HomeView: View {
                     .padding(.horizontal)
                     .padding(.top, 16)
                     
-                    Button(action: {
-                        authViewModel.state = .unauthenticated
-                    }) {
-                        Text("로그아웃")
-                            .font(.custom("Pretendard-Regular", size: 16))
-                            .foregroundColor(.red)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            .shadow(radius: 1, y: 1)
+                    
+                    // MARK: - 로그아웃
+                    if isLoggingOut {
+                        ProgressView("로그아웃 중...")
+                            .padding(.bottom, 30)
+                    } else {
+                        Button(action: {
+                            isLoggingOut = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                                authViewModel.user = nil
+                                authViewModel.state = .unauthenticated
+                                isLoggingOut = false
+                            }
+                        }) {
+                            Text("로그아웃")
+                                .foregroundColor(.black)
+                                .font(.custom("Pretendard-Regular", size: 10))
+                                .padding()
+                        }
+                        .padding()
+                        Spacer()
                     }
-                    .padding(.horizontal)
-                    .padding(.top, 24)
-                    Spacer()
                 }
                 .navigationDestination(isPresented: $showCreate) {
                     CreateMeetingView()

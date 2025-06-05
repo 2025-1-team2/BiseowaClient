@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     // 로그인 상태를 관리하는 ViewModel
-    @StateObject private var viewModel = AuthViewModel()
+    @EnvironmentObject var viewModel: AuthViewModel
 
     var body: some View {
         // 로그인 상태에 따라 다른 화면 표시
