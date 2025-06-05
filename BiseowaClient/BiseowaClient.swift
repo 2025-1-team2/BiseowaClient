@@ -8,7 +8,7 @@
 // App/App.swift 또는 BiseowaClientApp.swift
 import SwiftUI
 
-@main
+@main //메인 함수(시작!)
 struct BiseowaClientApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject var authViewModel = AuthViewModel()

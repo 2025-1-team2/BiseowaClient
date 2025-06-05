@@ -8,23 +8,29 @@
 import SwiftUI
 
 struct LoginView: View {
+    // 로그인 상태를 관리하는 ViewModel
     @StateObject private var viewModel = AuthViewModel()
 
     var body: some View {
+        // 로그인 상태에 따라 다른 화면 표시
         switch viewModel.state {
         case .unauthenticated, .authenticating:
+            // 로그인 전 또는 로그인 중인 상태
             loginContent
                 .overlay {
                     if viewModel.state == .authenticating {
+                        // 로그인 중이면 로딩 인디케이터 표시
                         ProgressView("로그인 중...")
                     }
                 }
 
         case .authenticated:
+            // 로그인 성공 시 홈 화면으로 전환
             HomeView()
         }
     }
-
+    
+    /// 로그인 화면 구성
     var loginContent: some View {
         VStack(spacing: 24) {
             Spacer()
@@ -46,8 +52,9 @@ struct LoginView: View {
             Text("로그인 / 회원가입")
                 .font(.custom("Pretendard-SemiBold", size: 16))
 
+            // Google 로그인 버튼
             Button(action: {
-                viewModel.googleLogin()
+                viewModel.googleLogin() // 구글 로그인 요청
             }) {
                 HStack {
                     Image("googlelogo")
@@ -69,6 +76,7 @@ struct LoginView: View {
             }
             .padding(.horizontal, 32)
 
+            // 로그인 실패 시 에러 메시지 표시
             if let error = viewModel.errorMessage {
                 Text(error)
                     .foregroundColor(.red)

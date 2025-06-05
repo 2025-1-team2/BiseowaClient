@@ -5,11 +5,6 @@
 //  Created by 김수진 on 6/4/25.
 //
 // Auth/Service/GoogleSignInManager.swift
-// 개발중
-//
-//  GoogleAuthService.swift
-//  BiseowaClient
-//
 
 import UIKit
 import FirebaseAuth

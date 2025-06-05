@@ -18,6 +18,7 @@ final class AuthViewModel: ObservableObject {
     @Published var user: User?
     @Published var errorMessage: String?
     
+    // 한국어로 된 오류 메시지 처리
     private func koreanErrorMessage(for error: Error) -> String {
         let nsError = error as NSError
 
