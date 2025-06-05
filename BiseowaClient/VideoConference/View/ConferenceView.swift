@@ -5,52 +5,58 @@
 //  Created by 정수인 on 6/4/25.
 //
 
+
 import SwiftUI
 
 struct ConferenceView: View {
-    let participants: [String] // ["User A", "User B", ...]
+    let participants: [String]
+
+    @State private var showSummaryPopup = false
+    @State private var showSummaryToast = false
+    @State private var summaryList = [
+        "회의 장소 : 경북대학교 융복합관",
+        "회의 시간 : 11:30",
+        "보고\n-개발현황 : 40% (Demo 완료, UI 작업진행중)",
+        "요약 항목 4"
+    ]
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
 
             VStack(spacing: 16) {
-                // 맨 위 중앙 고정 텍스트
-                Text("경북대학교 회의방")
-                    .font(.custom("Pretendard-Bold", size: 24))
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 20)
+                // 상단 제목 + 편지 버튼
+                ZStack {
+                    Text("회의방")
+                        .font(.custom("Pretendard-Bold", size: 24))
+                        .foregroundColor(.white)
 
-                // 상단 우측 버튼
-                HStack {
-                    
-                    ZStack{
-                        //Spacer()
-                       
-                        Circle()
-                            .fill(Color("BackgroundMint"))
-                            .frame(width: 40, height: 40)
-                        
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            withAnimation {
+                                showSummaryPopup = true
+                            }
+                        }) {
                             Image(systemName: "envelope")
                                 .font(.title2)
-                                .foregroundColor(Color.black)
+                                .foregroundColor(.black)
                                 .padding()
-                                .frame(width: 40,height: 40)
-                                //.padding(.trailing,20)
-                        
+                                .background(Circle().fill(Color("BackgroundMint")))
+                        }
                     }
-                    .offset(x:150)
                 }
+                .padding(.horizontal)
+                .padding(.top, 20)
+
                 Spacer()
-                
+
                 // 참가자 그리드
                 participantGrid
 
-                Spacer() // 아래로 밀기
+                Spacer()
 
-                // 하단 아이콘 메뉴
+                // 하단 메뉴 아이콘
                 HStack(spacing: 40) {
                     Image(systemName: "video.fill")
                     Image(systemName: "mic.fill")
@@ -61,10 +67,84 @@ struct ConferenceView: View {
                 .foregroundColor(.white)
                 .padding(.bottom, 20)
             }
+
+            // 요약 팝업
+            if showSummaryPopup {
+                VStack {
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            Text("📝 비서가 회의내용을 요약해드릴게요.")
+                                .font(.headline)
+                            Spacer()
+                            Button(action: {
+                                withAnimation {
+                                    showSummaryPopup = false
+                                }
+                            }) {
+                                Image(systemName: "xmark")
+                                    .foregroundColor(.black)
+                            }
+                        }
+
+                        ScrollView {
+                            VStack(alignment: .leading, spacing: 6) {
+                                ForEach(summaryList, id: \.self) { item in
+                                    Text("• \(item)")
+                                        .foregroundColor(.black)
+                                        .font(.body)
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
+                    }
+                    .padding()
+                    .background(Color(.systemGray6).opacity(0.9))
+                    .cornerRadius(16)
+                    .shadow(radius: 4)
+                    .padding(.horizontal, 24)
+                    .frame(maxHeight: UIScreen.main.bounds.height * 0.4)
+                    .transition(.move(edge: .top))
+                    .zIndex(1)
+
+                    Spacer()
+                }
+                .padding(.top, 60)
+                .animation(.easeInOut, value: showSummaryPopup)
+            }
+
+            // ✅ 요약본 알림 토스트
+            if showSummaryToast {
+                VStack {
+                    Spacer()
+                    Text("회의 요약본이 생성되었습니다.")
+                        .padding()
+                        .background(Color(.systemGray5))
+                        .cornerRadius(16)
+                        .foregroundColor(.black)
+                        .padding(.bottom, 60)
+                        .transition(.opacity)
+                        .animation(.easeInOut, value: showSummaryToast)
+                }
+            }
+        }
+        .onAppear {
+            // ✅ 진입 2초 후 토스트 자동 표시
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                withAnimation {
+                    showSummaryToast = true
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    withAnimation {
+                        showSummaryToast = false
+                    }
+                }
+            }
         }
     }
 
-    // 유동적인 Grid 구성
+    // 유동적인 그리드 구성
     var participantGrid: some View {
         switch participants.count {
         case 1:
@@ -116,9 +196,7 @@ struct ConferenceView: View {
             return AnyView(EmptyView())
         }
     }
-
 }
-
 
 #Preview {
     Group {
@@ -130,6 +208,8 @@ struct ConferenceView: View {
         ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E", "User F"])
     }
 }
+
+
 
 
 
