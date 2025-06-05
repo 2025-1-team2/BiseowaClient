@@ -1,6 +1,0 @@
-framework module Pods_BiseowaClient {
-  umbrella header "Pods-BiseowaClient-umbrella.h"
-
-  export *
-  module * { export * }
-}
