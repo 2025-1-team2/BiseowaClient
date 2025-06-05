@@ -11,6 +11,7 @@
 		076932352DF0B29900A061DF /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 076932342DF0B29900A061DF /* FirebaseCore */; };
 		076932382DF0B2CD00A061DF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 076932372DF0B2CD00A061DF /* GoogleSignIn */; };
 		0769323A2DF0B2CD00A061DF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 076932392DF0B2CD00A061DF /* GoogleSignInSwift */; };
+		076933712DF135CB00A061DF /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 076933702DF135CB00A061DF /* LiveKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,15 +58,11 @@
 		};
 		07F41C052DEF216B00AD3F1F /* BiseowaClientTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientTests;
 			sourceTree = "<group>";
 		};
 		07F41C0F2DEF216B00AD3F1F /* BiseowaClientUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = BiseowaClientUITests;
 			sourceTree = "<group>";
 		};
@@ -80,6 +77,7 @@
 				076932382DF0B2CD00A061DF /* GoogleSignIn in Frameworks */,
 				076932352DF0B29900A061DF /* FirebaseCore in Frameworks */,
 				076932332DF0B29900A061DF /* FirebaseAuth in Frameworks */,
+				076933712DF135CB00A061DF /* LiveKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +218,7 @@
 			packageReferences = (
 				076932312DF0B29900A061DF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				076932362DF0B2CD00A061DF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				0769336F2DF135CB00A061DF /* XCRemoteSwiftPackageReference "client-sdk-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 07F41BF62DEF216900AD3F1F /* Products */;
@@ -596,6 +595,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		0769336F2DF135CB00A061DF /* XCRemoteSwiftPackageReference "client-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/livekit/client-sdk-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -618,6 +625,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 076932362DF0B2CD00A061DF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		076933702DF135CB00A061DF /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0769336F2DF135CB00A061DF /* XCRemoteSwiftPackageReference "client-sdk-ios" */;
+			productName = LiveKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
