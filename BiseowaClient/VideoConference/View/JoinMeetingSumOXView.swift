@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct JoinMeetingSumOXView: View {
+    // ① 앞 화면에서 받아올 데이터
+    let receivedAddress: String
+    let receivedPassword: String
+
+    // ② 다음 화면(ConferenceView)으로 넘어갈지 여부를 제어하는 상태
+    @State private var goToConference: Bool = false
+
     var body: some View {
         ZStack(alignment: .top) {
+            // 배경
             Color("BackgroundMint")
                 .ignoresSafeArea()
 
             VStack(spacing: 0) {
-                // 상단 영역
+                // ─── 상단 로고/메시지 ───────────────────────────────
                 VStack(spacing: 12) {
                     Spacer().frame(height: 60)
 
@@ -43,44 +51,69 @@ struct JoinMeetingSumOXView: View {
 
                 Spacer()
 
-                // 하단 카드
+                // ─── 하단 카드 ───────────────────────────────────────
                 ZStack {
                     Color.white
                         .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
                         .shadow(radius: 3)
                         .ignoresSafeArea(edges: .bottom)
 
-                    HStack(spacing: 24) {
-                        Button(action: {
-                            // 네 버튼 로직
-                        }) {
-                            Text("네")
-                                .font(.custom("Pretendard-SemiBold", size: 16))
-                                .foregroundColor(.black)
-                                .frame(width: 100, height: 44)
-                                .background(Color("BackgroundMint"))
-                                .cornerRadius(10)
-                        }
+                    VStack(spacing: 24) {
+                        // (선택) 전달받은 주소/비밀번호를 UI에 보여주고 싶다면 아래를 언주석
+                        // Text("회의방 주소: \(receivedAddress)")
+                        //     .font(.custom("Pretendard-Regular", size: 14))
+                        //     .foregroundColor(.black)
+                        //
+                        // Text("비밀번호: \(receivedPassword)")
+                        //     .font(.custom("Pretendard-Regular", size: 14))
+                        //     .foregroundColor(.black)
 
-                        Button(action: {
-                            // 아니요 버튼 로직
-                        }) {
-                            Text("아니요")
-                                .font(.custom("Pretendard-SemiBold", size: 16))
-                                .foregroundColor(.black)
-                                .frame(width: 100, height: 44)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(10)
+                        HStack(spacing: 24) {
+                            // “네” 버튼 누르면 goToConference를 true로
+                            Button(action: {
+                                goToConference = true
+                            }) {
+                                Text("네")
+                                    .font(.custom("Pretendard-SemiBold", size: 16))
+                                    .foregroundColor(.black)
+                                    .frame(width: 100, height: 44)
+                                    .background(Color("BackgroundMint"))
+                                    .cornerRadius(10)
+                            }
+
+                            // “아니요” 버튼도 동일하게 ConferenceView로 보냄
+                            Button(action: {
+                                goToConference = true
+                            }) {
+                                Text("아니요")
+                                    .font(.custom("Pretendard-SemiBold", size: 16))
+                                    .foregroundColor(.black)
+                                    .frame(width: 100, height: 44)
+                                    .background(Color(.systemGray5))
+                                    .cornerRadius(10)
+                            }
                         }
+                        .padding(.top, 32)
+
+                        Spacer()
                     }
-                    .padding(.top)
+                    .padding(.top, 32)
                 }
                 .frame(height: 500)
             }
         }
+        // ─── NavigationStack 내에서 navigationDestination 사용 ───────
+        .navigationDestination(isPresented: $goToConference) {
+            // 기존에 파라미터 없는 이니셜라이저가 정의된 ConferenceView를 호출
+            ConferenceView(participants: [])
+        }
     }
 }
 
+
 #Preview {
-    JoinMeetingSumOXView()
+    JoinMeetingSumOXView(
+        receivedAddress: "https://example.com/testRoom",
+        receivedPassword: "1234"
+    )
 }
