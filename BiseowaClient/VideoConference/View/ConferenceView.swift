@@ -217,14 +217,29 @@ struct ConferenceView: View {
 
 
 
+// ─── 수정된 Preview: 반드시 participants 인자를 넘겨야 함 ───
 #Preview {
     Group {
-        //ConferenceView(participants: ["User A"])
-        //ConferenceView(participants: ["User A", "User B"])
-        //ConferenceView(participants: ["User A", "User B", "User C"])
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D"])
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
+        // 예시 1명
+        ConferenceView(participants: ["User A"])
+        
+        // 예시 2명
+        ConferenceView(participants: ["User A", "User B"])
+        
+        // 예시 3명
+        ConferenceView(participants: ["User A", "User B", "User C"])
+        
+        // 예시 4명
+        ConferenceView(participants: ["User A", "User B", "User C", "User D"])
+        
+        // 예시 5명
+        ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
+        
+        // 예시 6명
         ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E", "User F"])
+        
+        // 예시 빈 배열
+        ConferenceView(participants: [])
     }
 }
 
