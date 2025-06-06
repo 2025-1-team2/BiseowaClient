@@ -50,16 +50,20 @@ struct ConferenceView: View {
                         
                         HStack {
                             Spacer()
-                            Button(action: {
-                                withAnimation {
-                                    showSummaryPopup = true
+                            // ★ createSummary == true일 때만 이 버튼이 표시됨
+                            if createSummary {
+                                Button(action: {
+                                    // 버튼을 눌렀을 때 showSummaryPopup을 true로 바꿔, 요약 팝업이 나타나게 한다.
+                                    withAnimation {
+                                        showSummaryPopup = true
+                                    }
+                                }) {
+                                    Image(systemName: "envelope")
+                                        .font(.title2)
+                                        .foregroundColor(.black)
+                                        .padding()
+                                        .background(Circle().fill(Color("BackgroundMint")))
                                 }
-                            }) {
-                                Image(systemName: "envelope")
-                                    .font(.title2)
-                                    .foregroundColor(.black)
-                                    .padding()
-                                    .background(Circle().fill(Color("BackgroundMint")))
                             }
                         }
                     }
