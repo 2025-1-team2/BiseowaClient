@@ -9,28 +9,35 @@ import SwiftUI
 
 
 struct ExitView: View {
+    @Environment(\.dismiss) private var dismiss
     var body: some View {
-        ZStack {
-            Color("BackgroundMint")
-                .ignoresSafeArea()
-            
-            VStack(spacing: 16) {
-                Spacer()
-                Image("logo")
-                    .resizable()
-                    .frame(width: 64, height: 75)
+        
+            ZStack {
+                Color("BackgroundMint")
+                    .ignoresSafeArea()
                 
-                Text("비서가")
-                    .font(.custom("Pretendard-Bold", size: 24))
-                
-                Text("회의 내용 요약본을\n메일로 전송했어요!")
-                    .font(.custom("Pretendard-Light", size: 15))
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                Spacer()
+                VStack(spacing: 16) {
+                    Spacer()
+                    Image("logo")
+                        .resizable()
+                        .frame(width: 64, height: 75)
+                    
+                    Text("비서가")
+                        .font(.custom("Pretendard-Bold", size: 24))
+                    
+                    Text("회의 내용 요약본을\n메일로 전송했어요!")
+                        .font(.custom("Pretendard-Light", size: 15))
+                        .foregroundColor(.gray)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding()
             }
-            .padding()
-        }
+            .onAppear{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    dismiss()
+                }
+            }
     }
 }
 
