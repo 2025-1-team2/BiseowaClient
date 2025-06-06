@@ -13,6 +13,7 @@ struct ConferenceView: View {
 
     @State private var showSummaryPopup = false
     @State private var showSummaryToast = false
+    
     @State private var summaryList = [
         "회의 장소 : 경북대학교 융복합관",
         "회의 시간 : 11:30",
@@ -26,123 +27,146 @@ struct ConferenceView: View {
         ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
     ]
     @State private var currentChat = ""
+    @State private var isCameraOn = true
+    @State private var isMicOn = true
+    @State private var isExiting = false
+
+
     
 
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
-
-            VStack(spacing: 16) {
-                // 상단 제목 + 편지 버튼
-                ZStack {
-                    Text("회의방")
-                        .font(.custom("Pretendard-Bold", size: 24))
-                        .foregroundColor(.white)
-
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            withAnimation {
-                                showSummaryPopup = true
-                            }
-                        }) {
-                            Image(systemName: "envelope")
-                                .font(.title2)
-                                .foregroundColor(.black)
-                                .padding()
-                                .background(Circle().fill(Color("BackgroundMint")))
-                        }
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 20)
-
-                Spacer()
-
-                // 참가자 그리드
-                participantGrid
-
-                Spacer()
-
-                // 하단 메뉴 아이콘
-                HStack(spacing: 40) {
-                    Image(systemName: "video.fill")
-                    Image(systemName: "mic.fill")
-                    Image(systemName: "text.bubble.fill")
-                        .onTapGesture {
-                            withAnimation {
-                                showChatPopup.toggle()
-                            }
-                        }
-                    Image(systemName: "phone.down.fill")
-                }
-                .font(.title2)
-                .foregroundColor(.white)
-                .padding(.bottom, 20)
-            }
-
-            // 요약 팝업
-            if showSummaryPopup {
-                VStack {
-                    VStack(alignment: .leading, spacing: 12) {
+        NavigationStack{
+            ZStack {
+                Color.black.ignoresSafeArea()
+                
+                VStack(spacing: 16) {
+                    // 상단 제목 + 편지 버튼
+                    ZStack {
+                        Text("회의방")
+                            .font(.custom("Pretendard-Bold", size: 24))
+                            .foregroundColor(.white)
+                        
                         HStack {
-                            Text("📝 비서가 회의내용을 요약해드릴게요.")
-                                .font(.headline)
                             Spacer()
                             Button(action: {
                                 withAnimation {
-                                    showSummaryPopup = false
+                                    showSummaryPopup = true
                                 }
                             }) {
-                                Image(systemName: "xmark")
+                                Image(systemName: "envelope")
+                                    .font(.title2)
                                     .foregroundColor(.black)
+                                    .padding()
+                                    .background(Circle().fill(Color("BackgroundMint")))
                             }
                         }
-
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 6) {
-                                ForEach(summaryList, id: \.self) { item in
-                                    Text("• \(item)")
-                                        .foregroundColor(.black)
-                                        .font(.body)
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 20)
+                    
+                    Spacer()
+                    
+                    // 참가자 그리드
+                    participantGrid
+                    
+                    Spacer()
+                    
+                    // 하단 메뉴 아이콘
+                    HStack(spacing: 40) {
+                        Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
+                            .onTapGesture {
+                                isCameraOn.toggle()
+                                toggleCameraStream(enabled: isCameraOn)
+                            }
+                        
+                        Image(systemName: isMicOn ? "mic.fill" : "mic.slash.fill")
+                            .onTapGesture {
+                                isMicOn.toggle()
+                                toggleMicStream(enabled: isMicOn)
+                            }
+                        
+                        Image(systemName: "text.bubble.fill")
+                            .onTapGesture {
+                                withAnimation {
+                                    showChatPopup.toggle()
                                 }
                             }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-
+                        Image(systemName: "phone.down.fill")
+                            .onTapGesture{
+                                isExiting = true
+                            }
                     }
-                    .padding()
-                    .background(Color(.systemGray6).opacity(0.9))
-                    .cornerRadius(16)
-                    .shadow(radius: 4)
-                    .padding(.horizontal, 24)
-                    .frame(maxHeight: UIScreen.main.bounds.height * 0.4)
-                    .transition(.move(edge: .top))
-                    .zIndex(1)
-
-                    Spacer()
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 20)
                 }
-                .padding(.top, 60)
-                .animation(.easeInOut, value: showSummaryPopup)
-            }
-
-            // ✅ 요약본 알림 토스트
-            if showSummaryToast {
-                VStack {
-                    Spacer()
-                    Text("회의 요약본이 생성되었습니다.")
+                
+                // 요약 팝업
+                if showSummaryPopup {
+                    VStack {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack {
+                                Text("📝 비서가 회의내용을 요약해드릴게요.")
+                                    .font(.headline)
+                                Spacer()
+                                Button(action: {
+                                    withAnimation {
+                                        showSummaryPopup = false
+                                    }
+                                }) {
+                                    Image(systemName: "xmark")
+                                        .foregroundColor(.black)
+                                }
+                            }
+                            
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 6) {
+                                    ForEach(summaryList, id: \.self) { item in
+                                        Text("• \(item)")
+                                            .foregroundColor(.black)
+                                            .font(.body)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            
+                        }
                         .padding()
-                        .background(Color(.systemGray5))
+                        .background(Color(.systemGray6).opacity(0.9))
                         .cornerRadius(16)
-                        .foregroundColor(.black)
-                        .padding(.bottom, 60)
-                        .transition(.opacity)
-                        .animation(.easeInOut, value: showSummaryToast)
+                        .shadow(radius: 4)
+                        .padding(.horizontal, 24)
+                        .frame(maxHeight: UIScreen.main.bounds.height * 0.4)
+                        .transition(.move(edge: .top))
+                        .zIndex(1)
+                        
+                        Spacer()
+                    }
+                    .padding(.top, 60)
+                    .animation(.easeInOut, value: showSummaryPopup)
+                }
+                
+                // ✅ 요약본 알림 토스트
+                if showSummaryToast {
+                    VStack {
+                        Spacer()
+                        Text("회의 요약본이 생성되었습니다.")
+                            .padding()
+                            .background(Color(.systemGray5))
+                            .cornerRadius(16)
+                            .foregroundColor(.black)
+                            .padding(.bottom, 60)
+                            .transition(.opacity)
+                            .animation(.easeInOut, value: showSummaryToast)
+                    }
+                }
+                if showChatPopup {
+                    ChatPopupView(messages: $chatMessages, newMessage: $currentChat, isVisible: $showChatPopup)
+                        .zIndex(2)
                 }
             }
-            if showChatPopup {
-                ChatPopupView(messages: $chatMessages, newMessage: $currentChat, isVisible: $showChatPopup)
-                    .zIndex(2)
+            .navigationDestination(isPresented: $isExiting){
+                ExitView()
             }
         }
         .onAppear {
@@ -214,6 +238,14 @@ struct ConferenceView: View {
         }
     }
 }
+//카메라 On/off & mic on/off 임시함수!! 지스트리머 연결하면 수정필요
+func toggleCameraStream(enabled: Bool) {
+    print("🟢 카메라 \(enabled ? "ON" : "OFF") 상태 변경됨")
+}
+
+func toggleMicStream(enabled: Bool) {
+    print("🔇 마이크 \(enabled ? "ON" : "MUTE") 상태 변경됨")
+}
 
 
 
@@ -221,25 +253,23 @@ struct ConferenceView: View {
 #Preview {
     Group {
         // 예시 1명
-        ConferenceView(participants: ["User A"])
+        //ConferenceView(participants: ["User A"])
         
         // 예시 2명
-        ConferenceView(participants: ["User A", "User B"])
+        //ConferenceView(participants: ["User A", "User B"])
         
         // 예시 3명
-        ConferenceView(participants: ["User A", "User B", "User C"])
+        //ConferenceView(participants: ["User A", "User B", "User C"])
         
         // 예시 4명
-        ConferenceView(participants: ["User A", "User B", "User C", "User D"])
+        //ConferenceView(participants: ["User A", "User B", "User C", "User D"])
         
         // 예시 5명
-        ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
+        //ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
         
         // 예시 6명
         ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E", "User F"])
         
-        // 예시 빈 배열
-        ConferenceView(participants: [])
     }
 }
 
