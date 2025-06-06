@@ -8,11 +8,11 @@
 import SwiftUI
 import LiveKit
 
-struct CreateMeetingButton: View {
-    @State private var room: Room? = nil
-    @State private var isConnecting = false
-    @State private var errorMessage: String? = nil
-
+class MeetingService: ObservableObject {
+    @Published var room: Room?
+    @Published var isConnecting = false
+    @Published var errorMessage: String?
+    
     var body: some View {
         VStack {
             Button(action: createAndJoinRoom) {
@@ -52,10 +52,10 @@ struct CreateMeetingButton: View {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let token):
-                    connectToRoom(token: token)
+                    self.connectToRoom(token: token)
                 case .failure(let error):
-                    errorMessage = "토큰 가져오기 실패: \(error.localizedDescription)"
-                    isConnecting = false
+                    self.errorMessage = "토큰 가져오기 실패: \(error.localizedDescription)"
+                    self.isConnecting = false
                 }
             }
         }

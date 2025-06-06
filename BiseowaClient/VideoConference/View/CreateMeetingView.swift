@@ -1,8 +1,14 @@
 import SwiftUI
+import LiveKit
 
 struct CreateMeetingView: View {
+    @StateObject private var meetingService = MeetingService()
     @State private var meetingURL: String = ""
     @State private var meetingPassword: String = ""
+
+    @State private var room: Room? = nil
+    @State private var isConnecting = false
+    @State private var errorMessage: String? = nil
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -39,7 +45,7 @@ struct CreateMeetingView: View {
 
                 Spacer()
 
-                // 하단 흰색 카드
+                // 하단 카드
                 ZStack {
                     Color.white
                         .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
@@ -47,7 +53,6 @@ struct CreateMeetingView: View {
                         .ignoresSafeArea(edges: .bottom)
 
                     VStack(alignment: .leading, spacing: 20) {
-                        // 회의방 주소
                         Text("회의방 주소")
                             .font(.custom("Pretendard-Regular", size: 14))
 
@@ -62,11 +67,6 @@ struct CreateMeetingView: View {
                                     alignment: .leading
                                 )
 
-                            Text(meetingURL)
-                                .font(.custom("Pretendard-Light", size: 14))
-                                .padding(.leading, 12)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-
                             Button(action: {
                                 UIPasteboard.general.string = meetingURL
                             }) {
@@ -75,13 +75,11 @@ struct CreateMeetingView: View {
                                     .padding(10)
                                     .background(Color("MypageButtonGreen"))
                                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                                    
                             }
-                            .offset(y:-60)
+                            .offset(y: -60)
                             .padding(.trailing, 8)
                         }
 
-                        // 회의방 비밀번호
                         Text("회의방 비밀번호")
                             .font(.custom("Pretendard-Regular", size: 14))
 
@@ -89,23 +87,18 @@ struct CreateMeetingView: View {
                             .fill(Color(.systemGray6))
                             .frame(height: 40)
                             .overlay(
-                                Text(meetingPassword)
-                                    .font(.custom("Pretendard-Light", size: 14))
-                                    .padding(.leading, 12),
-                                alignment: .leading
-                            )
-                            .overlay(
-                                TextField("회의 비밀번호를 입력하세요", text: $meetingURL)
+                                TextField("회의 비밀번호를 입력하세요", text: $meetingPassword)
                                     .font(.custom("Pretendard-Light", size: 14))
                                     .padding(.horizontal, 12),
                                 alignment: .leading
                             )
 
                         // 회의 참가 버튼
+                        // livekit 토큰 서버 구축해야함
                         Button(action: {
-                            // 참가 로직
+                            meetingService.createAndJoinRoom()
                         }) {
-                            Text("회의 참가하기")
+                            Text(meetingService.isConnecting ? "연결 중..." : "회의 참가하기")
                                 .font(.custom("Pretendard-Bold", size: 16))
                                 .foregroundColor(.white)
                                 .padding()
@@ -114,8 +107,14 @@ struct CreateMeetingView: View {
                                 .cornerRadius(12)
                                 .shadow(color: .black.opacity(0.15), radius: 2, y: 1)
                         }
+                        .disabled(isConnecting)
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 8)
+
+                        if let errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                        }
                     }
                     .padding(.horizontal, 24)
                     .padding(.top, 32)
@@ -125,6 +124,7 @@ struct CreateMeetingView: View {
         }
     }
 }
+
 
 #Preview {
     CreateMeetingView()
