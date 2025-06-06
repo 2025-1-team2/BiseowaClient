@@ -19,6 +19,14 @@ struct ConferenceView: View {
         "보고\n-개발현황 : 40% (Demo 완료, UI 작업진행중)",
         "요약 항목 4"
     ]
+    
+    @State private var showChatPopup = false
+    @State private var chatMessages: [ChatMessage] = [
+        ChatMessage(sender: "Jeongseok Kim", content: "모든 참여자분들이 참석할때까지 기다려주세요."),
+        ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
+    ]
+    @State private var currentChat = ""
+    
 
     var body: some View {
         ZStack {
@@ -61,6 +69,11 @@ struct ConferenceView: View {
                     Image(systemName: "video.fill")
                     Image(systemName: "mic.fill")
                     Image(systemName: "text.bubble.fill")
+                        .onTapGesture {
+                            withAnimation {
+                                showChatPopup.toggle()
+                            }
+                        }
                     Image(systemName: "phone.down.fill")
                 }
                 .font(.title2)
@@ -127,9 +140,13 @@ struct ConferenceView: View {
                         .animation(.easeInOut, value: showSummaryToast)
                 }
             }
+            if showChatPopup {
+                ChatPopupView(messages: $chatMessages, newMessage: $currentChat, isVisible: $showChatPopup)
+                    .zIndex(2)
+            }
         }
         .onAppear {
-            // ✅ 진입 2초 후 토스트 자동 표시
+            // ✅ 진입 2초 후 토스트 자동 표시(임시)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {
                     showSummaryToast = true
@@ -198,14 +215,31 @@ struct ConferenceView: View {
     }
 }
 
+
+
+// ─── 수정된 Preview: 반드시 participants 인자를 넘겨야 함 ───
 #Preview {
     Group {
-        //ConferenceView(participants: ["User A"])
-        //ConferenceView(participants: ["User A", "User B"])
-        //ConferenceView(participants: ["User A", "User B", "User C"])
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D"])
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
+        // 예시 1명
+        ConferenceView(participants: ["User A"])
+        
+        // 예시 2명
+        ConferenceView(participants: ["User A", "User B"])
+        
+        // 예시 3명
+        ConferenceView(participants: ["User A", "User B", "User C"])
+        
+        // 예시 4명
+        ConferenceView(participants: ["User A", "User B", "User C", "User D"])
+        
+        // 예시 5명
+        ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
+        
+        // 예시 6명
         ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E", "User F"])
+        
+        // 예시 빈 배열
+        ConferenceView(participants: [])
     }
 }
 
