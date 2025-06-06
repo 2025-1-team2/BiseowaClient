@@ -5,6 +5,8 @@ struct HomeView: View {
     @State private var showJoin = false
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var isLoggingOut = false
+    @StateObject private var meetingService = MeetingService()
+    @State private var createdRoomInfo: (roomName: String, password: String)? = nil
 
     var body: some View {
         NavigationStack {
@@ -73,7 +75,18 @@ struct HomeView: View {
                         }
 
                         Button(action: {
-                            showCreate = true
+                            // 회의 생성 요청
+                                if let identity = authViewModel.user?.id {
+                                    meetingService.createMeeting(identity: identity) { result in
+                                        switch result {
+                                        case .success(let (roomName, password)):
+                                            self.createdRoomInfo = (roomName, password)
+                                            self.showCreate = true
+                                        case .failure(let error):
+                                            print("❌ 회의 생성 실패: \(error)")
+                                        }  
+                                    }
+                                }
                         }) {
                             HStack {
                                 Image(systemName: "plus")
@@ -144,7 +157,9 @@ struct HomeView: View {
                     }
                 }
                 .navigationDestination(isPresented: $showCreate) {
-                    CreateMeetingView()
+                    if let info = createdRoomInfo {
+                        CreateMeetingView(roomName: info.roomName, password: info.password)
+                    }
                 }
                 .navigationDestination(isPresented: $showJoin) {
                     JoinMeetingView()
