@@ -35,12 +35,13 @@ struct JoinMeetingView: View {
                             .foregroundColor(.gray)
                         
                         HStack(spacing: 6) {
-                            Circle()
-                                .frame(width: 6, height: 6)
-                                .foregroundColor(.gray.opacity(0.4))
+                            
                             Circle()
                                 .frame(width: 6, height: 6)
                                 .foregroundColor(.mint)
+                            Circle()
+                                .frame(width: 6, height: 6)
+                                .foregroundColor(.gray.opacity(0.4))
                         }
                         .padding(.top, 8)
                     }
