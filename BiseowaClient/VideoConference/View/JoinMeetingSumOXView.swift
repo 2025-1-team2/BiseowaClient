@@ -14,7 +14,10 @@ struct JoinMeetingSumOXView: View {
 
     // ② 다음 화면(ConferenceView)으로 넘어갈지 여부를 제어하는 상태
     @State private var goToConference: Bool = false
+    /// 요약 생성 여부를 전달하기 위한 상태 변수
+    @State private var shouldCreateSummary: Bool = true
 
+    
     var body: some View {
         ZStack(alignment: .top) {
             // 배경
@@ -71,6 +74,7 @@ struct JoinMeetingSumOXView: View {
                         HStack(spacing: 24) {
                             // “네” 버튼 누르면 goToConference를 true로
                             Button(action: {
+                                shouldCreateSummary = true
                                 goToConference = true
                             }) {
                                 Text("네")
@@ -83,6 +87,7 @@ struct JoinMeetingSumOXView: View {
 
                             // “아니요” 버튼도 동일하게 ConferenceView로 보냄
                             Button(action: {
+                                shouldCreateSummary = false
                                 goToConference = true
                             }) {
                                 Text("아니요")
@@ -102,10 +107,15 @@ struct JoinMeetingSumOXView: View {
                 .frame(height: 500)
             }
         }
-        // ─── NavigationStack 내에서 navigationDestination 사용 ───────
+        .navigationBarBackButtonHidden(false)
+        .navigationBarHidden(false)
+
+        // navigationDestination: shouldCreateSummary 플래그를 함께 전달
         .navigationDestination(isPresented: $goToConference) {
-            // 기존에 파라미터 없는 이니셜라이저가 정의된 ConferenceView를 호출
-            ConferenceView(participants: [])
+            ConferenceView(
+                participants: [],            // 실제 participants 배열이 있다면 여기에 넣으세요.
+                createSummary: shouldCreateSummary
+            )
         }
     }
 }

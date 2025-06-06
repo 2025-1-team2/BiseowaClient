@@ -10,6 +10,8 @@ import SwiftUI
 
 struct ConferenceView: View {
     let participants: [String]
+    /// Summary 생성 여부를 결정하는 플래그
+    let createSummary: Bool
 
     @State private var showSummaryPopup = false
     @State private var showSummaryToast = false
@@ -170,6 +172,9 @@ struct ConferenceView: View {
             }
         }
         .onAppear {
+            // createSummary가 true인 경우에만 토스트 자동 표시
+            guard createSummary else { return }
+            
             // ✅ 진입 2초 후 토스트 자동 표시(임시)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation {
@@ -184,6 +189,7 @@ struct ConferenceView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(false)
     }
 
     // 유동적인 그리드 구성
@@ -250,26 +256,30 @@ func toggleMicStream(enabled: Bool) {
 
 
 
-// ─── 수정된 Preview: 반드시 participants 인자를 넘겨야 함 ───
 #Preview {
     Group {
-        // 예시 1명
-        //ConferenceView(participants: ["User A"])
+        // 2명 예시, 요약 생성
+        ConferenceView(
+            participants: ["User A", "User B"],
+            createSummary: true
+        )
         
-        // 예시 2명
-        //ConferenceView(participants: ["User A", "User B"])
+        // 3명 예시, 요약 생성 안함
+        ConferenceView(
+            participants: ["User A", "User B", "User C"],
+            createSummary: false
+        )
         
-        // 예시 3명
-        //ConferenceView(participants: ["User A", "User B", "User C"])
+        // 6명 예시, 요약 생성
+        ConferenceView(
+            participants: ["User A", "User B", "User C", "User D", "User E", "User F"],
+            createSummary: true
+        )
         
-        // 예시 4명
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D"])
-        
-        // 예시 5명
-        //ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E"])
-        
-        // 예시 6명
-        ConferenceView(participants: ["User A", "User B", "User C", "User D", "User E", "User F"])
-        
+        // 빈 배열 예시, 요약 생성 안함
+        ConferenceView(
+            participants: [],
+            createSummary: false
+        )
     }
 }
