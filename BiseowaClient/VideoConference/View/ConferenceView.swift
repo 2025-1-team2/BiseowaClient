@@ -183,6 +183,7 @@ struct ConferenceView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
 
     // 유동적인 그리드 구성
