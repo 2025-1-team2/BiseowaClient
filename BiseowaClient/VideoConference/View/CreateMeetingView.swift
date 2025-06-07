@@ -36,7 +36,7 @@ struct CreateMeetingView: View {
                             Circle().frame(width: 6, height: 6).foregroundColor(.mint)
                             Circle().frame(width: 6, height: 6).foregroundColor(.gray.opacity(0.4))
                         }
-                        .hidden() // 동그라미 안 보이게 함
+                        .hidden()
                         .padding(.top, 8)
                     }
                     .frame(maxWidth: .infinity)
@@ -67,10 +67,11 @@ struct CreateMeetingView: View {
                         )
                     }
 
+                    // 연결 완료되면 ConferenceView 로 자동 네비게이션
                     NavigationLink(
-                        destination: JoinMeetingSumOXView(
-                            receivedAddress: meetingService.roomName,
-                            receivedPassword: meetingService.meetingPassword
+                        destination: ConferenceView(
+                            participants: [ authViewModel.user?.id ?? "guest" ],
+                            createSummary: false
                         ),
                         isActive: $meetingService.isConnected
                     ) {
