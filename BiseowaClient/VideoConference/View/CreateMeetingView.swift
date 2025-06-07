@@ -36,6 +36,7 @@ struct CreateMeetingView: View {
                             Circle().frame(width: 6, height: 6).foregroundColor(.mint)
                             Circle().frame(width: 6, height: 6).foregroundColor(.gray.opacity(0.4))
                         }
+                        .hidden() // 동그라미 안 보이게 함
                         .padding(.top, 8)
                     }
                     .frame(maxWidth: .infinity)
