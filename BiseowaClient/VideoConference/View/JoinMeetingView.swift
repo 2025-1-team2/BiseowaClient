@@ -138,4 +138,3 @@ struct JoinMeetingView: View {
 #Preview {
     JoinMeetingView()
 }
-
