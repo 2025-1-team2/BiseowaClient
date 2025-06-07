@@ -58,7 +58,7 @@ class MeetingService: ObservableObject {
     }
 
     func joinMeeting(identity: String, roomName: String, password: String) {
-        guard let url = URL(string: "http://3.34.130.191:3000/join-meeting") else {
+        guard let url = URL(string: "wss://team2test-mzfuicbo.livekit.cloud:3000/join-meeting") else {
             self.errorMessage = "잘못된 URL"
             return
         }
