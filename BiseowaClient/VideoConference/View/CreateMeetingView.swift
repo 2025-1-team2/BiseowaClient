@@ -5,72 +5,79 @@ struct CreateMeetingView: View {
     @StateObject private var meetingService = MeetingService()
     @EnvironmentObject var authViewModel: AuthViewModel
     @State private var navigateToNext = false
+
     @State private var meetingURL: String
     @State private var meetingPassword: String
     let receivedAddress: String
     let receivedPassword: String
     let roomName: String
     let password: String
-        
+
     @State private var room: Room? = nil
     @State private var isConnecting = false
     @State private var errorMessage: String? = nil
+    
+    // ✅ 복사 토스트 상태
+    @State private var showCopyToast = false
 
     init(roomName: String, password: String) {
         self.roomName = roomName
         self.password = password
-        self.receivedAddress = roomName         // 추가
-        self.receivedPassword = password        // 추가
+        self.receivedAddress = roomName
+        self.receivedPassword = password
         _meetingURL = State(initialValue: roomName)
         _meetingPassword = State(initialValue: password)
     }
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
                 Color("BackgroundMint")
                     .ignoresSafeArea()
-                
+
                 VStack(spacing: 0) {
                     // 상단 로고 및 인삿말
                     VStack(spacing: 12) {
                         Spacer().frame(height: 60)
-                        
+
                         Image("logo")
                             .resizable()
                             .frame(width: 64, height: 75)
-                        
+
                         Text("비서와")
                             .font(.custom("Pretendard-Bold", size: 24))
-                        
+
                         Text("회의를 생성해볼까요?")
                             .font(.custom("Pretendard-Light", size: 15))
                             .foregroundColor(.gray)
-                        
+
                         HStack(spacing: 6) {
-                            Circle()
+                            /*Circle()
                                 .frame(width: 6, height: 6)
                                 .foregroundColor(.mint)
                             Circle()
                                 .frame(width: 6, height: 6)
                                 .foregroundColor(.gray.opacity(0.4))
+                             */
                         }
                         .padding(.top, 8)
                     }
                     .frame(maxWidth: .infinity)
-                    
+
                     Spacer()
-                    
+
                     // 하단 카드
                     ZStack {
                         Color.white
                             .clipShape(RoundedCorner(radius: 24, corners: [.topLeft, .topRight]))
                             .shadow(radius: 3)
                             .ignoresSafeArea(edges: .bottom)
-                        
+
                         VStack(alignment: .leading, spacing: 20) {
+                            // 회의방 주소
                             Text("회의방 주소")
                                 .font(.custom("Pretendard-Regular", size: 14))
-                            
+
                             ZStack(alignment: .trailing) {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(Color(.systemGray6))
@@ -81,9 +88,21 @@ struct CreateMeetingView: View {
                                             .padding(.horizontal, 12),
                                         alignment: .leading
                                     )
-                                
+
+                                // ✅ 복사 버튼
                                 Button(action: {
-                                    UIPasteboard.general.string = meetingURL
+                                    let combined = "회의방 주소:\(meetingURL)\n회의방 비밀번호: \(meetingPassword)"
+                                    UIPasteboard.general.string = combined
+
+                                    // ✅ 토스트 띄우기
+                                    withAnimation {
+                                        showCopyToast = true
+                                    }
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                        withAnimation {
+                                            showCopyToast = false
+                                        }
+                                    }
                                 }) {
                                     Image(systemName: "doc.on.doc.fill")
                                         .foregroundColor(.white)
@@ -94,10 +113,11 @@ struct CreateMeetingView: View {
                                 .offset(y: -60)
                                 .padding(.trailing, 8)
                             }
-                            
+
+                            // 회의방 비밀번호
                             Text("회의방 비밀번호")
                                 .font(.custom("Pretendard-Regular", size: 14))
-                            
+
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(.systemGray6))
                                 .frame(height: 40)
@@ -107,14 +127,16 @@ struct CreateMeetingView: View {
                                         .padding(.horizontal, 12),
                                     alignment: .leading
                                 )
-                            
-                            // 회의 참가 버튼
-                            // livekit 토큰 서버 구축해야함
+
+                            // 회의 생성 버튼
                             Button(action: {
-                                // 회의 참가 화면으로 이동하는 로직
                                 meetingService.meetingPassword = password
-                                meetingService.joinMeeting(identity: authViewModel.user?.id ?? "guest",roomName: roomName,password: password)
-                            }){
+                                meetingService.joinMeeting(
+                                    identity: authViewModel.user?.id ?? "guest",
+                                    roomName: roomName,
+                                    password: password
+                                )
+                            }) {
                                 Text("회의 생성하기")
                                     .font(.custom("Pretendard-Bold", size: 16))
                                     .foregroundColor(.white)
@@ -126,7 +148,8 @@ struct CreateMeetingView: View {
                             }
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding(.top, 8)
-                            
+
+                            // 연결 성공 시 다음 화면으로 이동
                             NavigationLink(
                                 destination: JoinMeetingSumOXView(
                                     receivedAddress: meetingService.roomName,
@@ -142,11 +165,25 @@ struct CreateMeetingView: View {
                     }
                     .frame(height: 500)
                 }
+
+                // ✅ 복사 토스트 알림
+                if showCopyToast {
+                    VStack {
+                        Spacer()
+                        Text("복사되었습니다.")
+                            .padding()
+                            .background(Color(.systemGray5))
+                            .cornerRadius(12)
+                            .foregroundColor(.black)
+                            .padding(.bottom, 400)
+                            .transition(.opacity)
+                            .animation(.easeInOut, value: showCopyToast)
+                    }
+                }
             }
         }
     }
 }
-
 
 #Preview {
     CreateMeetingView(roomName: "room_ABC123", password: "pass456")
