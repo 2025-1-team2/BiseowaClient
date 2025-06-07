@@ -24,7 +24,6 @@ struct CreateMeetingView: View {
         _meetingURL = State(initialValue: roomName)
         _meetingPassword = State(initialValue: password)
     }
-
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
@@ -109,16 +108,14 @@ struct CreateMeetingView: View {
                                     alignment: .leading
                                 )
                             
-                            // ✅ 회의 생성하기 버튼 (텍스트만 변경됨)
+                            // 회의 참가 버튼
+                            // livekit 토큰 서버 구축해야함
                             Button(action: {
+                                // 회의 참가 화면으로 이동하는 로직
                                 meetingService.meetingPassword = password
-                                meetingService.joinMeeting(
-                                    identity: authViewModel.user?.id ?? "guest",
-                                    roomName: roomName,
-                                    password: password
-                                )
-                            }) {
-                                Text("회의 생성하기") // ✅ 여기만 바뀜!
+                                meetingService.joinMeeting(identity: authViewModel.user?.id ?? "guest",roomName: roomName,password: password)
+                            }){
+                                Text("회의 생성하기")
                                     .font(.custom("Pretendard-Bold", size: 16))
                                     .foregroundColor(.white)
                                     .padding()
@@ -154,5 +151,3 @@ struct CreateMeetingView: View {
 #Preview {
     CreateMeetingView(roomName: "room_ABC123", password: "pass456")
 }
-
-
