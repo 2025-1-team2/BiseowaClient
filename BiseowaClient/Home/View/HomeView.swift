@@ -63,7 +63,7 @@ struct HomeView: View {
                         }) {
                             HStack {
                                 Image(systemName: "video.fill")
-                                Text("회의참가")
+                                Text("회의 참가")
                                     .font(.custom("Pretendard-Light", size: 17))
                             }
                             .frame(width: 242, height: 40)

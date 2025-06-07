@@ -263,16 +263,15 @@ func toggleMicStream(enabled: Bool) {
 #Preview {
     Group {
         // 2명 예시, 요약 생성
-        ConferenceView(
-            participants: ["User A", "User B"],
-            createSummary: true
-        )
+        //ConferenceView(participants: ["User A", "User B"]
+        //,createSummary: true
+        //)
         
         // 3명 예시, 요약 생성 안함
-        ConferenceView(
-            participants: ["User A", "User B", "User C"],
-            createSummary: false
-        )
+        //ConferenceView(
+            //participants: ["User A", "User B", "User C"],
+            //createSummary: false
+        //)
         
         // 6명 예시, 요약 생성
         ConferenceView(
@@ -281,9 +280,9 @@ func toggleMicStream(enabled: Bool) {
         )
         
         // 빈 배열 예시, 요약 생성 안함
-        ConferenceView(
-            participants: [],
-            createSummary: false
-        )
+        //ConferenceView(
+        //    participants: [],
+        //    createSummary: false
+        //)
     }
 }
