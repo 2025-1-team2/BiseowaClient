@@ -115,7 +115,7 @@ struct CreateMeetingView: View {
                                 meetingService.meetingPassword = password
                                 meetingService.joinMeeting(identity: authViewModel.user?.id ?? "guest",roomName: roomName,password: password)
                             }){
-                                Text("회의 참가하기")
+                                Text("회의 생성하기")
                                     .font(.custom("Pretendard-Bold", size: 16))
                                     .foregroundColor(.white)
                                     .padding()
