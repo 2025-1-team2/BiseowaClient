@@ -1,12 +1,25 @@
+//
+//  CreateMeetingView.swift
+//  BiseowaClient
+//
+//  Created by minji on 6/8/25.
+//
+
 import SwiftUI
 import LiveKit
 
 struct CreateMeetingView: View {
     @StateObject private var meetingService = MeetingService()
     @EnvironmentObject var authViewModel: AuthViewModel
+
+    // URL과 Password를 바인딩으로 받습니다.
     @State private var meetingURL: String
     @State private var meetingPassword: String
+
     @State private var showCopyToast = false
+    // 바로 ConferenceView로 네비게이션할 플래그
+    @State private var navigateToConference = false
+
     let roomName: String
     let password: String
 
@@ -26,31 +39,27 @@ struct CreateMeetingView: View {
                     // 상단 로고 & 인삿말
                     VStack(spacing: 12) {
                         Spacer().frame(height: 60)
-                        Image("logo").resizable().frame(width: 64, height: 75)
+                        Image("logo")
+                            .resizable()
+                            .frame(width: 64, height: 75)
                         Text("비서와")
                             .font(.custom("Pretendard-Bold", size: 24))
                         Text("회의를 생성해볼까요?")
                             .font(.custom("Pretendard-Light", size: 15))
                             .foregroundColor(.gray)
-                        HStack(spacing: 6) {
-                            Circle().frame(width: 6, height: 6).foregroundColor(.mint)
-                            Circle().frame(width: 6, height: 6).foregroundColor(.gray.opacity(0.4))
-                        }
-                        .hidden()
-                        .padding(.top, 8)
                     }
                     .frame(maxWidth: .infinity)
 
                     Spacer()
 
-                    // 카드 컴포넌트
+                    // MeetingFormCard 컴포넌트
                     MeetingFormCard(
                         showCopy: true,
                         url: $meetingURL,
                         password: $meetingPassword,
                         buttonTitle: "회의 생성하기"
                     ) {
-                        // 복사 + 토스트
+                        // 1) 주소·비밀번호 복사 + 토스트 표시
                         let combined = "회의방 주소: \(meetingURL)\n회의방 비밀번호: \(meetingPassword)"
                         UIPasteboard.general.string = combined
                         withAnimation { showCopyToast = true }
@@ -58,27 +67,35 @@ struct CreateMeetingView: View {
                             withAnimation { showCopyToast = false }
                         }
 
-                        // 생성 로직
+                        // 2) LiveKit 회의 생성/접속 로직
                         meetingService.meetingPassword = password
                         meetingService.joinMeeting(
                             identity: authViewModel.user?.id ?? "guest",
                             roomName: roomName,
                             password: password
                         )
+                        // 3) 연결이 성공하면 자동으로 ConferenceView로 이동
+                        //    meetingService.isConnected 가 true가 되면 네비게이트
+                        //    아래 NavigationLink 가 활성화됩니다.
+                        navigateToConference = true
+
                     }
 
-                    // 연결 완료되면 ConferenceView 로 자동 네비게이션
+                    // 연결 완료되면 바로 ConferenceView 로 자동 네비게이션
                     NavigationLink(
-                        destination: ConferenceView(
-                            participants: [ authViewModel.user?.id ?? "guest" ],
-                            createSummary: false
+                        destination:
+                            ConferenceView(
+                                participants: [ authViewModel.user?.id ?? "guest" ],
+                                createSummary: false  // 요약을 항상 생성하고 싶다면 true, 아니면 false
                         ),
-                        isActive: $meetingService.isConnected
+                        isActive: $navigateToConference
                     ) {
                         EmptyView()
                     }
+                    .hidden()
                 }
 
+                // 복사 토스트
                 if showCopyToast {
                     VStack {
                         Spacer()
