@@ -58,7 +58,7 @@ class MeetingService: ObservableObject {
     }
 
     func joinMeeting(identity: String, roomName: String, password: String) {
-        guard let url = URL(string: "wss://team2test-mzfuicbo.livekit.cloud:3000/join-meeting") else {
+        guard let url = URL(string: "http://3.34.130.191:3000/join-meeting") else {
             self.errorMessage = "잘못된 URL"
             return
         }
@@ -73,13 +73,25 @@ class MeetingService: ObservableObject {
             "identity": identity
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
+        
+        print("📤 join-meeting 요청 보냄")
+        print("➡️ 요청 바디: \(body)")
 
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
                     self.errorMessage = "토큰 요청 실패: \(error.localizedDescription)"
                     self.isConnecting = false
+                    print("❌ 요청 에러: \(error.localizedDescription)")
                     return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("✅ 응답 상태 코드: \(httpResponse.statusCode)")
+                }
+
+                if let data = data,let responseBody = String(data: data, encoding: .utf8) {
+                    print("📥 응답 바디: \(responseBody)")
                 }
 
                 guard let data = data,
@@ -87,9 +99,10 @@ class MeetingService: ObservableObject {
                       let token = json["token"] else {
                     self.errorMessage = "토큰 파싱 실패"
                     self.isConnecting = false
+                    print("❌ JSON 파싱 실패 또는 token 없음")
                     return
                 }
-
+                print("✅ 토큰 수신 완료: \(token.prefix(30))...")
                 self.connectToRoom(token: token)
             }
         }.resume()
