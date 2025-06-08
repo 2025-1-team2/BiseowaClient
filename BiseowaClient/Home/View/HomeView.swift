@@ -49,7 +49,9 @@ struct HomeView: View {
                                 }
                                 Image("logo")
                                     .resizable()
-                                    .frame(width: 60, height: 64)
+                                    .aspectRatio(contentMode: .fit)   // or .scaledToFit()
+                                    .frame(width: 60, height: 60)
+                                    //.frame(width: 60, height: 64)
                                     .foregroundColor(.teal)
                             }
                         }
