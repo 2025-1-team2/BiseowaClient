@@ -206,6 +206,7 @@ struct ConferenceView: View {
                 if let track = participant.videoTracks.first?.track as? VideoTrack {
                     VideoViewWrapper(videoTrack: track)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
                 } else {
                     Color.gray
                 }

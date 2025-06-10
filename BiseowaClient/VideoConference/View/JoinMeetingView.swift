@@ -65,12 +65,18 @@ struct JoinMeetingView: View {
                     Text("회의 링크와 비밀번호를 모두 입력해주세요.")
                 }
                 // 요약 여부 묻는 화면으로 이동
-                .navigationDestination(isPresented: $goToSumOX) {
-                    JoinMeetingSumOXView(
+                NavigationLink(
+                    destination: JoinMeetingSumOXView(
                         receivedAddress: meetingURL,
                         receivedPassword: meetingPassword
                     )
+                    .environmentObject(meetingService)
+                    .environmentObject(authViewModel),
+                    isActive: $goToSumOX
+                ) {
+                    EmptyView()
                 }
+                .hidden()
             }
             .navigationBarBackButtonHidden(false)
             .navigationBarHidden(false)

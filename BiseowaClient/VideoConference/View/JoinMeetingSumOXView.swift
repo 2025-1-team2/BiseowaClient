@@ -112,15 +112,15 @@ struct JoinMeetingSumOXView: View {
         .navigationBarBackButtonHidden(false)
         .navigationBarHidden(false)
 
-        // navigationDestination: shouldCreateSummary 플래그를 함께 전달
-        .navigationDestination(isPresented: $goToConference) {
-            ConferenceView(
-                //participants: [],            // 실제 participants 배열이 있다면 여기에 넣으세요.
-                createSummary: shouldCreateSummary
-            )
-            .environmentObject(meetingService)
-            .environmentObject(authViewModel)
+        NavigationLink(
+            destination: ConferenceView(createSummary: shouldCreateSummary)
+                .environmentObject(meetingService)
+                .environmentObject(authViewModel),
+            isActive: $goToConference
+        ) {
+            EmptyView()
         }
+        .hidden()
     }
 }
 
