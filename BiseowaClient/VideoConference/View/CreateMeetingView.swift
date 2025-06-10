@@ -18,12 +18,12 @@ struct CreateMeetingView: View {
     @State private var showCopyToast = false
     @State private var navigateToConference = false
 
-    let roomName: String
-    let password: String
+    let receivedAddress: String
+    let receivedPassword: String
 
     init(roomName: String, password: String) {
-        self.roomName = roomName
-        self.password = password
+        self.receivedAddress = roomName
+        self.receivedPassword = password
         _meetingURL = State(initialValue: roomName)
         _meetingPassword = State(initialValue: password)
     }
@@ -64,12 +64,7 @@ struct CreateMeetingView: View {
                         },
                         onSubmit: {
                             // 회의 생성 & 이동만!
-                            meetingService.meetingPassword = password
-                            meetingService.joinMeeting(
-                                identity: authViewModel.user?.id ?? "guest",
-                                roomName: roomName,
-                                password: password
-                            )
+
                             navigateToConference = true
                         }
                     )
@@ -78,9 +73,10 @@ struct CreateMeetingView: View {
                     NavigationLink(
                         destination: ConferenceView(
                             //participants: [authViewModel.user?.id ?? "guest"],
-                            createSummary: false
-                        ).environmentObject(meetingService)
-                            .environmentObject(authViewModel),
+                            createSummary: false,roomName: receivedAddress,password: receivedPassword
+                        )
+                        .environmentObject(meetingService)
+                        .environmentObject(authViewModel),
                         isActive: $navigateToConference
                     ) {
                         EmptyView()

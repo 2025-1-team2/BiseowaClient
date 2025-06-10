@@ -112,8 +112,9 @@ struct JoinMeetingSumOXView: View {
         .navigationBarBackButtonHidden(false)
         .navigationBarHidden(false)
 
+
         NavigationLink(
-            destination: ConferenceView(createSummary: shouldCreateSummary)
+            destination: ConferenceView(createSummary: shouldCreateSummary,roomName: receivedAddress,password: receivedPassword)
                 .environmentObject(meetingService)
                 .environmentObject(authViewModel),
             isActive: $goToConference

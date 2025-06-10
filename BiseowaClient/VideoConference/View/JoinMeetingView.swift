@@ -47,15 +47,7 @@ struct JoinMeetingView: View {
                         },
                         onSubmit: {
                             // 여기에 참가 로직 + 네비게이션 트리거
-                            if meetingURL.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-                               meetingPassword.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                                showAlert = true
-                            } else {
-                                meetingService.joinMeeting(identity: authViewModel.user?.id ?? "guest",
-                                                           roomName: meetingURL,
-                                                           password: meetingPassword)
-                                goToSumOX = true
-                            }
+                            goToSumOX = true
                         }
                     )
                 }

@@ -136,4 +136,23 @@ class MeetingService: ObservableObject {
             }
         }
     }
+    func disconnect() {
+        Task {
+            await room?.disconnect()
+            await stopCaptureIfNeeded()
+            room = nil
+        }
+    }
+
+    private func stopCaptureIfNeeded() async {
+        guard let participant = room?.localParticipant else { return }
+
+        for (_, publication) in participant.trackPublications {
+            if let videoTrack = publication.track as? LocalVideoTrack,
+               let capturer = videoTrack.capturer as? CameraCapturer {
+                try? await capturer.stopCapture()
+                break
+            }
+        }
+    }
 }

@@ -19,7 +19,9 @@ struct ConferenceView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
     @EnvironmentObject var meetingService: MeetingService
     let createSummary: Bool
-
+    let roomName: String
+    let password: String
+    
     @State private var showSummaryPopup = false
     @State private var showSummaryToast = false
     @State private var showChatPopup = false
@@ -27,30 +29,30 @@ struct ConferenceView: View {
     @State private var isCameraOn = true
     @State private var isMicOn = true
     @State private var isExiting = false
-
+    
     @State private var chatMessages: [ChatMessage] = [
         ChatMessage(sender: "Jeongseok Kim", content: "모든 참여자분들이 참석할때까지 기다려주세요."),
         ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
     ]
-
+    
     @State private var summaryList = [
         "회의 장소 : 경북대학교 융복합관",
         "회의 시간 : 11:30",
         "보고\n-개발현황 : 40% (Demo 완료, UI 작업진행중)",
         "요약 항목 4"
     ]
-
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-
+                
                 VStack(spacing: 16) {
                     ZStack {
                         Text("회의방")
                             .font(.custom("Pretendard-Bold", size: 24))
                             .foregroundColor(.white)
-
+                        
                         HStack {
                             Spacer()
                             if createSummary {
@@ -70,24 +72,24 @@ struct ConferenceView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-
+                    
                     Spacer()
                     participantGrid
                     Spacer()
-
+                    
                     HStack(spacing: 40) {
                         Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
                             .onTapGesture {
                                 isCameraOn.toggle()
                                 toggleCameraStream(enabled: isCameraOn)
                             }
-
+                        
                         Image(systemName: isMicOn ? "mic.fill" : "mic.slash.fill")
                             .onTapGesture {
                                 isMicOn.toggle()
                                 toggleMicStream(enabled: isMicOn)
                             }
-
+                        
                         Image(systemName: "text.bubble.fill")
                             .onTapGesture {
                                 withAnimation {
@@ -96,6 +98,7 @@ struct ConferenceView: View {
                             }
                         Image(systemName: "phone.down.fill")
                             .onTapGesture {
+                                meetingService.disconnect()
                                 isExiting = true
                             }
                     }
@@ -103,7 +106,7 @@ struct ConferenceView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 20)
                 }
-
+                
                 if showSummaryPopup {
                     VStack {
                         VStack(alignment: .leading, spacing: 12) {
@@ -120,7 +123,7 @@ struct ConferenceView: View {
                                         .foregroundColor(.black)
                                 }
                             }
-
+                            
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 6) {
                                     ForEach(summaryList, id: \.self) { item in
@@ -145,7 +148,7 @@ struct ConferenceView: View {
                     .padding(.top, 60)
                     .animation(.easeInOut, value: showSummaryPopup)
                 }
-
+                
                 if showSummaryToast {
                     VStack {
                         Spacer()
@@ -159,7 +162,7 @@ struct ConferenceView: View {
                             .animation(.easeInOut, value: showSummaryToast)
                     }
                 }
-
+                
                 if showChatPopup {
                     ChatPopupView(messages: $chatMessages, newMessage: $currentChat, isVisible: $showChatPopup)
                         .zIndex(2)
@@ -170,6 +173,13 @@ struct ConferenceView: View {
             }
         }
         .onAppear {
+            Task {
+                try? await meetingService.joinMeeting(
+                    identity: authViewModel.user?.id ?? "guest",
+                    roomName: roomName,
+                    password: password
+                )
+            }
             guard createSummary else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 withAnimation { showSummaryToast = true }
@@ -181,26 +191,26 @@ struct ConferenceView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(false)
     }
-
+    
     struct VideoViewWrapper: UIViewRepresentable {
         let videoTrack: VideoTrack
-
+        
         func makeUIView(context: Context) -> VideoView {
             let view = VideoView()
             view.track = videoTrack
             view.contentMode = .scaleAspectFit
             return view
         }
-
+        
         func updateUIView(_ uiView: VideoView, context: Context) {
             uiView.track = videoTrack
         }
     }
-
+    
     struct ParticipantViewWrapper: View {
         let participant: Participant
         let displayName: String
-
+        
         var body: some View {
             VStack {
                 if let track = participant.videoTracks.first?.track as? VideoTrack {
@@ -214,30 +224,30 @@ struct ConferenceView: View {
             }
         }
     }
-
+    
     @ViewBuilder
     func participantViews(for participants: [Participant], width: CGFloat, height: CGFloat) -> some View {
         ForEach(participants.indices) { index in
             let participant = participants[index]
             let isLocal = participant.identity == meetingService.room?.localParticipant.identity
             let name = isLocal
-                ? (authViewModel.user?.name ?? "나")
-                : (participant.identity?.stringValue ?? "알 수 없음")
-
+            ? (authViewModel.user?.name ?? "나")
+            : (participant.identity?.stringValue ?? "알 수 없음")
+            
             ParticipantViewWrapper(participant: participant, displayName: name)
                 .frame(width: width, height: height)
         }
     }
-
-
+    
+    
     var participantGrid: some View {
         guard let room = meetingService.room else {
             return AnyView(Text("참가자 정보를 불러오는 중입니다...").foregroundColor(.white))
         }
-
+        
         let allParticipants = [room.localParticipant] + room.remoteParticipants.values.map { $0 }
         let count = allParticipants.count
-
+        
         return AnyView(
             Group {
                 switch count {
@@ -279,8 +289,8 @@ func toggleMicStream(enabled: Bool) {
     print("🔇 마이크 \(enabled ? "ON" : "MUTE") 상태 변경됨")
 }
 
-#Preview {
-    ConferenceView(createSummary: true)
-        .environmentObject(MeetingService())
-        .environmentObject(AuthViewModel())
-}
+//#Preview {
+    //ConferenceView(createSummary: true)
+    //   .environmentObject(MeetingService())
+    //  .environmentObject(AuthViewModel())
+//}
