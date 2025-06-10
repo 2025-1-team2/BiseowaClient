@@ -7,9 +7,14 @@
 
 
 import SwiftUI
+import LiveKit
+
+
+
 
 struct ConferenceView: View {
-    let participants: [String]
+    @EnvironmentObject var meetingService: MeetingService  
+    //let participants: [String]
     /// Summary 생성 여부를 결정하는 플래그
     let createSummary: Bool
 
@@ -195,59 +200,96 @@ struct ConferenceView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(false)
     }
+    struct VideoViewWrapper: UIViewRepresentable {
+        let videoTrack: VideoTrack
 
-    // 유동적인 그리드 구성
-    var participantGrid: some View {
-        switch participants.count {
-        case 1:
-            return AnyView(
-                VStack {
-                    Spacer()
-                    ParticipantView(name: participants[0], isLocalUser: participants[0] == "User C")
-                        .frame(width: 200, height: 200)
-                    Spacer()
-                }
-            )
-        case 2:
-            return AnyView(
-                VStack(spacing: 16) {
-                    ForEach(participants, id: \.self) { name in
-                        ParticipantView(name: name, isLocalUser: name == "User C")
-                            .frame(width: 200, height: 200)
-                    }
-                }
-            )
-        case 3:
-            return AnyView(
-                VStack(spacing: 12) {
-                    ForEach(participants, id: \.self) { name in
-                        ParticipantView(name: name, isLocalUser: name == "User C")
-                            .frame(width: 180, height: 180)
-                    }
-                }
-            )
-        case 4:
-            return AnyView(
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 1), count: 2), spacing: 80) {
-                    ForEach(participants, id: \.self) { name in
-                        ParticipantView(name: name, isLocalUser: name == "User C")
-                            .frame(width: 140, height: 140)
-                    }
-                }
-            )
-        case 5, 6:
-            return AnyView(
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 1), count: 2), spacing: 80) {
-                    ForEach(participants, id: \.self) { name in
-                        ParticipantView(name: name, isLocalUser: name == "User C")
-                            .frame(width: 120, height: 120)
-                    }
-                }
-            )
-        default:
-            return AnyView(EmptyView())
+        func makeUIView(context: Context) -> VideoView {
+            let view = VideoView()
+            view.track = videoTrack
+            view.contentMode = .scaleAspectFit
+            return view
+        }
+
+        func updateUIView(_ uiView: VideoView, context: Context) {
+            uiView.track = videoTrack
         }
     }
+    struct ParticipantViewWrapper: View {
+        let participant: Participant
+
+        var body: some View {
+            VStack {
+                if let track = participant.videoTracks.first?.track as? VideoTrack {
+                    VideoViewWrapper(videoTrack: track)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    Color.gray // 대체 이미지
+                }
+                Text("\(participant.identity)")
+                    .foregroundColor(.white)
+            }
+        }
+    }
+    
+    var participantGrid: some View {
+        
+        guard let room = meetingService.room else {
+                return AnyView(Text("참가자 정보를 불러오는 중입니다...").foregroundColor(.white))
+            }
+        let allParticipants = [room.localParticipant] + room.remoteParticipants.values.map { $0 }
+        let count = allParticipants.count
+
+        return AnyView(
+            Group {
+                switch count {
+                case 1:
+                    VStack {
+                        Spacer()
+                        ParticipantViewWrapper(participant: allParticipants[0])
+                            .frame(width: 200, height: 200)
+                        Spacer()
+                    }
+
+                case 2:
+                    VStack(spacing: 16) {
+                        ForEach(allParticipants, id: \.sid) { participant in
+                            ParticipantViewWrapper(participant: participant)
+                                .frame(width: 200, height: 200)
+                        }
+                    }
+
+                case 3:
+                    VStack(spacing: 12) {
+                        ForEach(allParticipants, id: \.sid) { participant in
+                            ParticipantViewWrapper(participant: participant)
+                                .frame(width: 180, height: 180)
+                        }
+                    }
+
+                case 4:
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
+                        ForEach(allParticipants, id: \.sid) { participant in
+                            ParticipantViewWrapper(participant: participant)
+                                .frame(width: 140, height: 140)
+                        }
+                    }
+
+                case 5...6:
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
+                        ForEach(allParticipants, id: \.sid) { participant in
+                            ParticipantViewWrapper(participant: participant)
+                                .frame(width: 120, height: 120)
+                        }
+                    }
+
+                default:
+                    EmptyView()
+                }
+            }
+        )
+    }
+
+
 }
 //카메라 On/off & mic on/off 임시함수!! 지스트리머 연결하면 수정필요
 func toggleCameraStream(enabled: Bool) {
@@ -275,7 +317,7 @@ func toggleMicStream(enabled: Bool) {
         
         // 6명 예시, 요약 생성
         ConferenceView(
-            participants: ["User A", "User B", "User C", "User D", "User E", "User F"],
+            //participants: ["User A", "User B", "User C", "User D", "User E", "User F"],
             createSummary: true
         )
         

@@ -8,6 +8,7 @@ import SwiftUI
 import LiveKit
 
 class MeetingService: ObservableObject {
+    @StateObject private var meetingService = MeetingService()
     @Published var room: Room?
     @Published var isConnecting = false
     @Published var errorMessage: String?

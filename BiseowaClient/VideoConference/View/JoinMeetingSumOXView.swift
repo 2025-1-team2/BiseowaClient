@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct JoinMeetingSumOXView: View {
+    @StateObject private var meetingService = MeetingService()   
     // ① 앞 화면에서 받아올 데이터
     let receivedAddress: String
     let receivedPassword: String
@@ -113,9 +114,9 @@ struct JoinMeetingSumOXView: View {
         // navigationDestination: shouldCreateSummary 플래그를 함께 전달
         .navigationDestination(isPresented: $goToConference) {
             ConferenceView(
-                participants: [],            // 실제 participants 배열이 있다면 여기에 넣으세요.
+                //participants: [],            // 실제 participants 배열이 있다면 여기에 넣으세요.
                 createSummary: shouldCreateSummary
-            )
+            ).environmentObject(meetingService) 
         }
     }
 }

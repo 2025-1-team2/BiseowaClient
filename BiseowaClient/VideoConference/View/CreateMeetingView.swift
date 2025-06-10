@@ -77,9 +77,9 @@ struct CreateMeetingView: View {
                     // 생성 성공 시 바로 ConferenceView 로 이동
                     NavigationLink(
                         destination: ConferenceView(
-                            participants: [authViewModel.user?.id ?? "guest"],
+                            //participants: [authViewModel.user?.id ?? "guest"],
                             createSummary: false
-                        ),
+                        ).environmentObject(meetingService) ,
                         isActive: $navigateToConference
                     ) {
                         EmptyView()
