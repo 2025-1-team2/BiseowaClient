@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct JoinMeetingSumOXView: View {
-    @StateObject private var meetingService = MeetingService()   
+    @StateObject private var meetingService = MeetingService()
+    @EnvironmentObject var authViewModel: AuthViewModel
     // ① 앞 화면에서 받아올 데이터
     let receivedAddress: String
     let receivedPassword: String
@@ -116,7 +117,9 @@ struct JoinMeetingSumOXView: View {
             ConferenceView(
                 //participants: [],            // 실제 participants 배열이 있다면 여기에 넣으세요.
                 createSummary: shouldCreateSummary
-            ).environmentObject(meetingService) 
+            )
+            .environmentObject(meetingService)
+            .environmentObject(authViewModel)
         }
     }
 }

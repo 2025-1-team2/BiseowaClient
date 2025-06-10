@@ -5,60 +5,56 @@
 //  Created by 정수인 on 6/4/25.
 //
 
+//
+//  ConferenceView.swift
+//  BiseowaClient
+//
+//  Created by 정수인 on 6/4/25.
+//
 
 import SwiftUI
 import LiveKit
 
-
-
-
 struct ConferenceView: View {
-    @EnvironmentObject var meetingService: MeetingService  
-    //let participants: [String]
-    /// Summary 생성 여부를 결정하는 플래그
+    @EnvironmentObject var authViewModel: AuthViewModel
+    @EnvironmentObject var meetingService: MeetingService
     let createSummary: Bool
 
     @State private var showSummaryPopup = false
     @State private var showSummaryToast = false
-    
+    @State private var showChatPopup = false
+    @State private var currentChat = ""
+    @State private var isCameraOn = true
+    @State private var isMicOn = true
+    @State private var isExiting = false
+
+    @State private var chatMessages: [ChatMessage] = [
+        ChatMessage(sender: "Jeongseok Kim", content: "모든 참여자분들이 참석할때까지 기다려주세요."),
+        ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
+    ]
+
     @State private var summaryList = [
         "회의 장소 : 경북대학교 융복합관",
         "회의 시간 : 11:30",
         "보고\n-개발현황 : 40% (Demo 완료, UI 작업진행중)",
         "요약 항목 4"
     ]
-    
-    @State private var showChatPopup = false
-    @State private var chatMessages: [ChatMessage] = [
-        ChatMessage(sender: "Jeongseok Kim", content: "모든 참여자분들이 참석할때까지 기다려주세요."),
-        ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
-    ]
-    @State private var currentChat = ""
-    @State private var isCameraOn = true
-    @State private var isMicOn = true
-    @State private var isExiting = false
-
-
-    
 
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 Color.black.ignoresSafeArea()
-                
+
                 VStack(spacing: 16) {
-                    // 상단 제목 + 편지 버튼
                     ZStack {
                         Text("회의방")
                             .font(.custom("Pretendard-Bold", size: 24))
                             .foregroundColor(.white)
-                        
+
                         HStack {
                             Spacer()
-                            // ★ createSummary == true일 때만 이 버튼이 표시됨
                             if createSummary {
                                 Button(action: {
-                                    // 버튼을 눌렀을 때 showSummaryPopup을 true로 바꿔, 요약 팝업이 나타나게 한다.
                                     withAnimation {
                                         showSummaryPopup = true
                                     }
@@ -74,28 +70,24 @@ struct ConferenceView: View {
                     }
                     .padding(.horizontal)
                     .padding(.top, 20)
-                    
+
                     Spacer()
-                    
-                    // 참가자 그리드
                     participantGrid
-                    
                     Spacer()
-                    
-                    // 하단 메뉴 아이콘
+
                     HStack(spacing: 40) {
                         Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
                             .onTapGesture {
                                 isCameraOn.toggle()
                                 toggleCameraStream(enabled: isCameraOn)
                             }
-                        
+
                         Image(systemName: isMicOn ? "mic.fill" : "mic.slash.fill")
                             .onTapGesture {
                                 isMicOn.toggle()
                                 toggleMicStream(enabled: isMicOn)
                             }
-                        
+
                         Image(systemName: "text.bubble.fill")
                             .onTapGesture {
                                 withAnimation {
@@ -103,7 +95,7 @@ struct ConferenceView: View {
                                 }
                             }
                         Image(systemName: "phone.down.fill")
-                            .onTapGesture{
+                            .onTapGesture {
                                 isExiting = true
                             }
                     }
@@ -111,8 +103,7 @@ struct ConferenceView: View {
                     .foregroundColor(.white)
                     .padding(.bottom, 20)
                 }
-                
-                // 요약 팝업
+
                 if showSummaryPopup {
                     VStack {
                         VStack(alignment: .leading, spacing: 12) {
@@ -129,7 +120,7 @@ struct ConferenceView: View {
                                         .foregroundColor(.black)
                                 }
                             }
-                            
+
                             ScrollView {
                                 VStack(alignment: .leading, spacing: 6) {
                                     ForEach(summaryList, id: \.self) { item in
@@ -140,7 +131,6 @@ struct ConferenceView: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .leading)
                             }
-                            
                         }
                         .padding()
                         .background(Color(.systemGray6).opacity(0.9))
@@ -150,14 +140,12 @@ struct ConferenceView: View {
                         .frame(maxHeight: UIScreen.main.bounds.height * 0.4)
                         .transition(.move(edge: .top))
                         .zIndex(1)
-                        
                         Spacer()
                     }
                     .padding(.top, 60)
                     .animation(.easeInOut, value: showSummaryPopup)
                 }
-                
-                // ✅ 요약본 알림 토스트
+
                 if showSummaryToast {
                     VStack {
                         Spacer()
@@ -171,35 +159,29 @@ struct ConferenceView: View {
                             .animation(.easeInOut, value: showSummaryToast)
                     }
                 }
+
                 if showChatPopup {
                     ChatPopupView(messages: $chatMessages, newMessage: $currentChat, isVisible: $showChatPopup)
                         .zIndex(2)
                 }
             }
-            .navigationDestination(isPresented: $isExiting){
+            .navigationDestination(isPresented: $isExiting) {
                 ExitView()
             }
         }
         .onAppear {
-            // createSummary가 true인 경우에만 토스트 자동 표시
             guard createSummary else { return }
-            
-            // ✅ 진입 2초 후 토스트 자동 표시(임시)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                withAnimation {
-                    showSummaryToast = true
-                }
-
+                withAnimation { showSummaryToast = true }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    withAnimation {
-                        showSummaryToast = false
-                    }
+                    withAnimation { showSummaryToast = false }
                 }
             }
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(false)
     }
+
     struct VideoViewWrapper: UIViewRepresentable {
         let videoTrack: VideoTrack
 
@@ -214,8 +196,10 @@ struct ConferenceView: View {
             uiView.track = videoTrack
         }
     }
+
     struct ParticipantViewWrapper: View {
         let participant: Participant
+        let displayName: String
 
         var body: some View {
             VStack {
@@ -223,19 +207,33 @@ struct ConferenceView: View {
                     VideoViewWrapper(videoTrack: track)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
-                    Color.gray // 대체 이미지
+                    Color.gray
                 }
-                Text("\(participant.identity)")
-                    .foregroundColor(.white)
+                Text(displayName).foregroundColor(.white)
             }
         }
     }
-    
+
+    @ViewBuilder
+    func participantViews(for participants: [Participant], width: CGFloat, height: CGFloat) -> some View {
+        ForEach(participants.indices) { index in
+            let participant = participants[index]
+            let isLocal = participant.identity == meetingService.room?.localParticipant.identity
+            let name = isLocal
+                ? (authViewModel.user?.name ?? "나")
+                : (participant.identity?.stringValue ?? "알 수 없음")
+
+            ParticipantViewWrapper(participant: participant, displayName: name)
+                .frame(width: width, height: height)
+        }
+    }
+
+
     var participantGrid: some View {
-        
         guard let room = meetingService.room else {
-                return AnyView(Text("참가자 정보를 불러오는 중입니다...").foregroundColor(.white))
-            }
+            return AnyView(Text("참가자 정보를 불러오는 중입니다...").foregroundColor(.white))
+        }
+
         let allParticipants = [room.localParticipant] + room.remoteParticipants.values.map { $0 }
         let count = allParticipants.count
 
@@ -245,53 +243,33 @@ struct ConferenceView: View {
                 case 1:
                     VStack {
                         Spacer()
-                        ParticipantViewWrapper(participant: allParticipants[0])
-                            .frame(width: 200, height: 200)
+                        participantViews(for: allParticipants, width: 200, height: 200)
                         Spacer()
                     }
-
                 case 2:
                     VStack(spacing: 16) {
-                        ForEach(allParticipants, id: \.sid) { participant in
-                            ParticipantViewWrapper(participant: participant)
-                                .frame(width: 200, height: 200)
-                        }
+                        participantViews(for: allParticipants, width: 200, height: 200)
                     }
-
                 case 3:
                     VStack(spacing: 12) {
-                        ForEach(allParticipants, id: \.sid) { participant in
-                            ParticipantViewWrapper(participant: participant)
-                                .frame(width: 180, height: 180)
-                        }
+                        participantViews(for: allParticipants, width: 180, height: 180)
                     }
-
                 case 4:
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
-                        ForEach(allParticipants, id: \.sid) { participant in
-                            ParticipantViewWrapper(participant: participant)
-                                .frame(width: 140, height: 140)
-                        }
+                        participantViews(for: allParticipants, width: 140, height: 140)
                     }
-
                 case 5...6:
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
-                        ForEach(allParticipants, id: \.sid) { participant in
-                            ParticipantViewWrapper(participant: participant)
-                                .frame(width: 120, height: 120)
-                        }
+                        participantViews(for: allParticipants, width: 120, height: 120)
                     }
-
                 default:
                     EmptyView()
                 }
             }
         )
     }
-
-
 }
-//카메라 On/off & mic on/off 임시함수!! 지스트리머 연결하면 수정필요
+
 func toggleCameraStream(enabled: Bool) {
     print("🟢 카메라 \(enabled ? "ON" : "OFF") 상태 변경됨")
 }
@@ -300,31 +278,8 @@ func toggleMicStream(enabled: Bool) {
     print("🔇 마이크 \(enabled ? "ON" : "MUTE") 상태 변경됨")
 }
 
-
-
 #Preview {
-    Group {
-        // 2명 예시, 요약 생성
-        //ConferenceView(participants: ["User A", "User B"]
-        //,createSummary: true
-        //)
-        
-        // 3명 예시, 요약 생성 안함
-        //ConferenceView(
-            //participants: ["User A", "User B", "User C"],
-            //createSummary: false
-        //)
-        
-        // 6명 예시, 요약 생성
-        ConferenceView(
-            //participants: ["User A", "User B", "User C", "User D", "User E", "User F"],
-            createSummary: true
-        )
-        
-        // 빈 배열 예시, 요약 생성 안함
-        //ConferenceView(
-        //    participants: [],
-        //    createSummary: false
-        //)
-    }
+    ConferenceView(createSummary: true)
+        .environmentObject(MeetingService())
+        .environmentObject(AuthViewModel())
 }

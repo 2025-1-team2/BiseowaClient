@@ -79,7 +79,8 @@ struct CreateMeetingView: View {
                         destination: ConferenceView(
                             //participants: [authViewModel.user?.id ?? "guest"],
                             createSummary: false
-                        ).environmentObject(meetingService) ,
+                        ).environmentObject(meetingService)
+                            .environmentObject(authViewModel),
                         isActive: $navigateToConference
                     ) {
                         EmptyView()
