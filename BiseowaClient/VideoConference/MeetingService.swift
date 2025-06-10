@@ -114,8 +114,16 @@ class MeetingService: ObservableObject {
             do {
                 try await room.connect(
                     url: "wss://team2test-mzfuicbo.livekit.cloud",
-                    token: token
+                    token: token,
+                    connectOptions: ConnectOptions(
+                        autoSubscribe: true
+                    )
                 )
+                
+                // 연결 이후 카메라/마이크 수동 활성화 (선택)
+                try await room.localParticipant.setCamera(enabled: true)
+                try await room.localParticipant.setMicrophone(enabled: true)
+
                 self.room = room
                 self.isConnected = true
                 self.isConnecting = false
