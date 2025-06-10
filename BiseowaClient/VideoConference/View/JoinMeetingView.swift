@@ -2,6 +2,8 @@ import SwiftUI
 import LiveKit
 
 struct JoinMeetingView: View {
+    @StateObject private var meetingService = MeetingService()
+    @EnvironmentObject var authViewModel: AuthViewModel
     @State private var meetingURL: String = ""
     @State private var meetingPassword: String = ""
     @State private var goToSumOX: Bool = false
@@ -49,6 +51,9 @@ struct JoinMeetingView: View {
                                meetingPassword.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                                 showAlert = true
                             } else {
+                                meetingService.joinMeeting(identity: authViewModel.user?.id ?? "guest",
+                                                           roomName: meetingURL,
+                                                           password: meetingPassword)
                                 goToSumOX = true
                             }
                         }
