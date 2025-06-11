@@ -226,52 +226,51 @@ struct ConferenceView: View {
     }
     
     @ViewBuilder
-    func participantViews(for participants: [Participant], width: CGFloat, height: CGFloat) -> some View {
-        ForEach(participants.indices) { index in
-            let participant = participants[index]
-            let isLocal = participant.identity == meetingService.room?.localParticipant.identity
-            let name = isLocal
-            ? (authViewModel.user?.name ?? "나")
-            : (participant.identity?.stringValue ?? "알 수 없음")
-            
-            ParticipantViewWrapper(participant: participant, displayName: name)
-                .frame(width: width, height: height)
+    func participantViews(for list: [Participant],
+                          width: CGFloat,
+                          height: CGFloat) -> some View {
+        ForEach(list.indices, id: \.self) { idx in
+            let p = list[idx]
+            ParticipantViewWrapper(
+                participant: p,
+                displayName: p.identity == meetingService.room?.localParticipant.identity
+                             ? (authViewModel.user?.name ?? "나")
+                             : (p.identity?.stringValue ?? "알 수 없음"))
+            .frame(width: width, height: height)
         }
     }
     
     
     var participantGrid: some View {
-        guard let room = meetingService.room else {
-            return AnyView(Text("참가자 정보를 불러오는 중입니다...").foregroundColor(.white))
-        }
-        
-        let allParticipants = [room.localParticipant] + room.remoteParticipants.values.map { $0 }
-        let count = allParticipants.count
+        let list = meetingService.participants   // 🔄 Published 배열 사용
+        let count = list.count
         
         return AnyView(
             Group {
                 switch count {
+                case 0:
+                    Text("참가자를 기다리는 중...").foregroundColor(.white)
                 case 1:
                     VStack {
                         Spacer()
-                        participantViews(for: allParticipants, width: 200, height: 200)
+                        participantViews(for: list, width: 200, height: 200)
                         Spacer()
                     }
                 case 2:
                     VStack(spacing: 16) {
-                        participantViews(for: allParticipants, width: 200, height: 200)
+                        participantViews(for: list, width: 200, height: 200)
                     }
                 case 3:
                     VStack(spacing: 12) {
-                        participantViews(for: allParticipants, width: 180, height: 180)
+                        participantViews(for: list, width: 180, height: 180)
                     }
                 case 4:
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
-                        participantViews(for: allParticipants, width: 140, height: 140)
+                        participantViews(for: list, width: 140, height: 140)
                     }
                 case 5...6:
                     LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 80) {
-                        participantViews(for: allParticipants, width: 120, height: 120)
+                        participantViews(for: list, width: 120, height: 120)
                     }
                 default:
                     EmptyView()

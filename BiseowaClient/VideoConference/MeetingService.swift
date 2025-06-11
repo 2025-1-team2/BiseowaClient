@@ -9,6 +9,7 @@ import LiveKit
 
 class MeetingService: ObservableObject, RoomDelegate {
     @StateObject private var meetingService = MeetingService()
+    @Published var participants: [Participant] = []
     @Published var room: Room?
     @Published var isConnecting = false
     @Published var errorMessage: String?
@@ -17,12 +18,26 @@ class MeetingService: ObservableObject, RoomDelegate {
     @Published var isConnected = false
     
     init() {
-        self.room = Room()
-        self.room?.delegates.add(delegate: self)
+        room = Room()
+        room?.delegates.add(delegate: self)
+
+        // local 참가자 먼저 넣어두기
+        if let local = room?.localParticipant {
+            participants.append(local)
+        }
     }
-    
+    // 새 원격 참가자 연결
     func room(_ room: Room, participantDidConnect participant: RemoteParticipant) {
-        print("새로운 참가자 입장: \(participant.identity)")
+        DispatchQueue.main.async { [weak self] in
+            self?.participants.append(participant)      // ✅ Published 값 변경 → View 갱신
+        }
+    }
+
+    // 원격 참가자 퇴장
+    func room(_ room: Room, participantDidDisconnect participant: RemoteParticipant) {
+        DispatchQueue.main.async { [weak self] in
+            self?.participants.removeAll { $0.identity == participant.identity }
+        }
     }
 
     func createMeeting(identity: String,completion: @escaping (Result<(String, String), Error>) -> Void) {
