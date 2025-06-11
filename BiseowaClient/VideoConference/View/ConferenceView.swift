@@ -188,55 +188,97 @@ struct ConferenceView: View {
                 }
             }
         }
+        .onDisappear {
+            Task {
+                try? await meetingService.room.localParticipant.setCamera(enabled: false)
+                try? await meetingService.room.localParticipant.setMicrophone(enabled: false)
+            }
+        }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(false)
     }
     
+    /// MeetingService.ParticipantInfo 전용 래퍼
     struct VideoViewWrapper: UIViewRepresentable {
-        let videoTrack: VideoTrack
-        
+        let info: MeetingService.ParticipantInfo
+
         func makeUIView(context: Context) -> VideoView {
             let view = VideoView()
-            view.track = videoTrack
             view.contentMode = .scaleAspectFit
+            // 최초 트랙 연결
+            if let track = primaryVideoTrack {
+                view.track = track
+            }
             return view
         }
-        
+
         func updateUIView(_ uiView: VideoView, context: Context) {
-            uiView.track = videoTrack
+            // 트랙이 바뀌었을 수 있으니 매번 최신값 갱신
+            uiView.track = primaryVideoTrack
+        }
+
+        /// info에서 첫 번째 활성 VideoTrack을 꺼내는 헬퍼
+        private var primaryVideoTrack: VideoTrack? {
+            info.participant
+                .videoTracks
+                .compactMap { $0.track as? VideoTrack }
+                .first
         }
     }
     
+    /// MeetingService.ParticipantInfo 전용 뷰
     struct ParticipantViewWrapper: View {
-        let participant: Participant
-        let displayName: String
+        let info: MeetingService.ParticipantInfo
+        let cornerRadius: CGFloat = 20
         
+        // ① 트랙 헬퍼에 print 추가
+        private var primaryVideoTrack: VideoTrack? {
+            let track = info.participant
+                .videoTracks
+                .compactMap { $0.track as? VideoTrack }
+                .first
+            return track
+        }
+
         var body: some View {
             VStack {
-                if let track = participant.videoTracks.first?.track as? VideoTrack {
-                    VideoViewWrapper(videoTrack: track)
+                if let track = primaryVideoTrack {
+                    VideoViewWrapper(info: info)   // ← VideoViewWrapper 호출
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                        .onAppear {
+                                                print("✅ [\(info.id)] track detected:", track)
+                                            }
                 } else {
                     Color.gray
+                        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                        .onAppear {
+                            print("⚠️ [\(info.id)] no track – gray box shown")
+                                            }
+                    
                 }
-                Text(displayName).foregroundColor(.white)
+
+                Text(info.isLocal ? "나" : (info.name ?? info.id))
+                    .foregroundColor(.white)
+                    .font(.caption)
+            }
+            .onAppear {
+                print("🖥️ ParticipantViewWrapper onAppear for \(info.id)")
+                print("   ▶ primaryVideoTrack:", primaryVideoTrack as Any)
             }
         }
+
+
     }
-    
+
     @ViewBuilder
-    func participantViews(for list: [Participant],
+    func participantViews(for list: [MeetingService.ParticipantInfo],
                           width: CGFloat,
                           height: CGFloat) -> some View {
-        ForEach(list.indices, id: \.self) { idx in
-            let p = list[idx]
-            ParticipantViewWrapper(
-                participant: p,
-                displayName: p.identity == meetingService.room?.localParticipant.identity
-                             ? (authViewModel.user?.name ?? "나")
-                             : (p.identity?.stringValue ?? "알 수 없음"))
-            .frame(width: width, height: height)
+
+        ForEach(list) { info in   // Identifiable이므로 id 전달 불필요
+            ParticipantViewWrapper(info: info)      // ✅ 변경
+                .frame(width: width, height: height)
         }
     }
     
@@ -244,7 +286,7 @@ struct ConferenceView: View {
     var participantGrid: some View {
         let list = meetingService.participants   // 🔄 Published 배열 사용
         let count = list.count
-        
+        print(list)
         return AnyView(
             Group {
                 switch count {

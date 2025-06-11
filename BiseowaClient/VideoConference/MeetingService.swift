@@ -8,38 +8,62 @@ import SwiftUI
 import LiveKit
 
 class MeetingService: ObservableObject, RoomDelegate {
-    @StateObject private var meetingService = MeetingService()
-    @Published var participants: [Participant] = []
-    @Published var room: Room?
+
     @Published var isConnecting = false
     @Published var errorMessage: String?
     @Published var roomName: String = ""
     @Published var meetingPassword: String = ""
     @Published var isConnected = false
-    
+
+    // 1) View가 바인딩할 Published 배열
+    @Published var participants: [ParticipantInfo] = []
+
+    // 2) non-optional Room
+    let room: Room = Room()
+
+    struct ParticipantInfo: Identifiable {
+        let id: String
+        let name: String?
+        let isLocal: Bool
+        let participant: Participant
+    }
+
+    // MARK: 초기화
     init() {
-        room = Room()
-        room?.delegates.add(delegate: self)
+        //room = Room()
+        room.delegates.add(delegate: self)   // ✅ optional-chaining 제거
 
-        // local 참가자 먼저 넣어두기
-        if let local = room?.localParticipant {
-            participants.append(local)
-        }
+        // 로컬 참가자 등록 (room.localParticipant 는 Optional 아님)
+        let local = room.localParticipant
+        participants.append(
+            ParticipantInfo(
+                id: String(describing: local.identity),
+                name: local.name,
+                isLocal: true,
+                participant: local
+            )
+        )
     }
-    // 새 원격 참가자 연결
-    func room(_ room: Room, participantDidConnect participant: RemoteParticipant) {
+
+    // MARK: delegate
+    func room(_ room: Room, participantDidConnect p: RemoteParticipant) {
         DispatchQueue.main.async { [weak self] in
-            self?.participants.append(participant)      // ✅ Published 값 변경 → View 갱신
+            self?.participants.append(
+                ParticipantInfo(
+                    id: String(describing: p.identity),
+                    name: p.name,
+                    isLocal: false,
+                    participant: p
+                )
+            )
         }
     }
 
-    // 원격 참가자 퇴장
-    func room(_ room: Room, participantDidDisconnect participant: RemoteParticipant) {
+    func room(_ room: Room, participantDidDisconnect p: RemoteParticipant) {
         DispatchQueue.main.async { [weak self] in
-            self?.participants.removeAll { $0.identity == participant.identity }
+            self?.participants.removeAll { $0.id == String(describing: p.identity) }
         }
     }
-
     func createMeeting(identity: String,completion: @escaping (Result<(String, String), Error>) -> Void) {
         guard let url = URL(string: "http://3.34.130.191:3000/create-meeting") else {
             self.errorMessage = "잘못된 URL"
@@ -135,9 +159,9 @@ class MeetingService: ObservableObject, RoomDelegate {
 
     func connectToRoom(token: String) {
         Task {
-            let room = Room()
+            //let room = Room()
             do {
-                try await room.connect(
+                try await self.room.connect(
                     url: "wss://team2test-mzfuicbo.livekit.cloud",
                     token: token,
                     connectOptions: ConnectOptions(
@@ -146,10 +170,30 @@ class MeetingService: ObservableObject, RoomDelegate {
                 )
                 
                 // 연결 이후 카메라/마이크 수동 활성화 (선택)
-                try await room.localParticipant.setCamera(enabled: true)
-                try await room.localParticipant.setMicrophone(enabled: true)
+                try await self.room.localParticipant.setCamera(enabled: true)
+                try await self.room.localParticipant.setMicrophone(enabled: true)
+                
+                // 3) participants 배열 갱신 (메인 스레드)
+                let local = room.localParticipant
+                let updatedLocalInfo = ParticipantInfo(
+                    id: room.localParticipant.sid?.stringValue ?? "",
+                    name: local.name ?? "나",
+                    isLocal: true,
+                    participant: local
+                )
+                // 기존 원격 참가자 유지
+                let remoteInfos = room.remoteParticipants.values.map {
+                    ParticipantInfo(
+                        id: $0.sid?.stringValue ?? "",
+                        name: $0.name,
+                        isLocal: false,
+                        participant: $0
+                    )
+                }
+                // 배열을 새로 할당해야 @Published 알림이 감지됩니다.
+                participants = [updatedLocalInfo] + remoteInfos
 
-                self.room = room
+                //self.room = room
                 self.isConnected = true
                 self.isConnecting = false
                 print("✅ 회의 연결 성공")
@@ -162,20 +206,25 @@ class MeetingService: ObservableObject, RoomDelegate {
     }
     func disconnect() {
         Task {
-            await room?.disconnect()
-            await stopCaptureIfNeeded()
-            room = nil
+            do {
+                try await room.localParticipant.setCamera(enabled: false)
+                try await room.localParticipant.setMicrophone(enabled: false)
+                await room.disconnect()
+                try await stopCaptureIfNeeded()   // ← try await
+                isConnected = false
+            } catch {
+                // 캡처 정지 과정에서 나는 에러 로그만 남기고 흘려보내도 OK
+                print("🔴 stopCaptureIfNeeded 오류: \(error)")
+            }
         }
     }
 
-    private func stopCaptureIfNeeded() async {
-        guard let participant = room?.localParticipant else { return }
+    private func stopCaptureIfNeeded() async throws {
+        let participant = room.localParticipant
 
-        for (_, publication) in participant.trackPublications {
-            if let videoTrack = publication.track as? LocalVideoTrack,
-               let capturer = videoTrack.capturer as? CameraCapturer {
-                try? await capturer.stopCapture()
-                break
+        for pub in participant.videoTracks {
+            if let videoTrack = pub.track as? LocalVideoTrack {
+                try await videoTrack.stop()   // 여기는 그대로 try await
             }
         }
     }
