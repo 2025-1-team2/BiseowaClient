@@ -7,7 +7,7 @@
 import SwiftUI
 import LiveKit
 
-class MeetingService: ObservableObject {
+class MeetingService: ObservableObject, RoomDelegate {
     @StateObject private var meetingService = MeetingService()
     @Published var room: Room?
     @Published var isConnecting = false
@@ -15,6 +15,15 @@ class MeetingService: ObservableObject {
     @Published var roomName: String = ""
     @Published var meetingPassword: String = ""
     @Published var isConnected = false
+    
+    init() {
+        self.room = Room()
+        self.room?.delegates.add(delegate: self)
+    }
+    
+    func room(_ room: Room, participantDidConnect participant: RemoteParticipant) {
+        print("새로운 참가자 입장: \(participant.identity)")
+    }
 
     func createMeeting(identity: String,completion: @escaping (Result<(String, String), Error>) -> Void) {
         guard let url = URL(string: "http://3.34.130.191:3000/create-meeting") else {
