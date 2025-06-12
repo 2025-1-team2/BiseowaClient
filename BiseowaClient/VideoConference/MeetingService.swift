@@ -106,7 +106,7 @@ class MeetingService: ObservableObject, RoomDelegate {
         }.resume()
     }
 
-    func joinMeeting(identity: String, roomName: String, password: String) {
+    func joinMeeting(identity: String, roomName: String, password: String,displayName: String) {
         guard let url = URL(string: "http://3.34.130.191:3000/join-meeting") else {
             self.errorMessage = "잘못된 URL"
             return
@@ -119,7 +119,8 @@ class MeetingService: ObservableObject, RoomDelegate {
         let body: [String: Any] = [
             "roomName": roomName,
             "password": password,
-            "identity": identity
+            "identity": identity,
+            "name": displayName
         ]
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         

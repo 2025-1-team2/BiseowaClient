@@ -177,7 +177,8 @@ struct ConferenceView: View {
                 try? await meetingService.joinMeeting(
                     identity: authViewModel.user?.id ?? "guest",
                     roomName: roomName,
-                    password: password
+                    password: password,
+                    displayName: authViewModel.user?.name ?? "익명"
                 )
             }
             guard createSummary else { return }
