@@ -108,6 +108,35 @@ struct ConferenceView: View {
                     
                     // 06/22 minji 여기까지 수정함
                     
+                    // 06/22 minji 서버 연결 관련 여기부터 수정
+                    // 인식된 텍스트 표시
+                    Text(speechRecognizer.recognizedText)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black.opacity(0.2))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                    
+                    // ▶ 여기서 recognizedText가 변할 때마다 호출
+                    .onChange(of: speechRecognizer.recognizedText) { newText in
+                    // 빈 문자열 아니면 요청
+                    guard !newText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { return }
+                        NetworkManager.shared.sendSummaryRequest(text: newText) { result in
+                            switch result {
+                            case .success(let summary):
+                                DispatchQueue.main.async {
+                                    // 받아온 요약을 summaryList에 추가
+                                    summaryList.append(summary)
+                                }
+                            case .failure(let error):
+                                print("⚠️ 요약 요청 실패:", error)
+                            }
+                        }
+                    }
+                    
+                    // 06/22 minji 여기까지 수정 
+                    
                     HStack(spacing: 40) {
                         Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
                             .onTapGesture {
