@@ -30,6 +30,10 @@ struct ConferenceView: View {
     @State private var isMicOn = true
     @State private var isExiting = false
     
+    @StateObject private var speechRecognizer = SpeechRecognizer()
+    @State private var isRecording = false
+
+    
     @State private var chatMessages: [ChatMessage] = [
         ChatMessage(sender: "Jeongseok Kim", content: "모든 참여자분들이 참석할때까지 기다려주세요."),
         ChatMessage(sender: "정수인", content: "잠깐 개인사정 때문에 참석이 힘들다고 연락주셨습니다.")
@@ -76,6 +80,33 @@ struct ConferenceView: View {
                     Spacer()
                     participantGrid
                     Spacer()
+                    
+                    // 여기부터 수정함
+                    Button(action: {
+                        if isRecording {
+                            speechRecognizer.stopRecording()
+                        } else {
+                            speechRecognizer.startRecording()
+                        }
+                        isRecording.toggle()
+                    }) {
+                        Text(isRecording ? "🎙️ STT 끄기" : "🎙️ STT 시작")
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 10)
+                            .background(isRecording ? Color.red : Color.green)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+
+                    Text(speechRecognizer.recognizedText)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(Color.black.opacity(0.2))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
+                    
+                    // 여기까지 수정함
                     
                     HStack(spacing: 40) {
                         Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
@@ -321,6 +352,7 @@ struct ConferenceView: View {
             }
         )
     }
+    
 }
 
 func toggleCameraStream(enabled: Bool) {
