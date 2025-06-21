@@ -81,7 +81,7 @@ struct ConferenceView: View {
                     participantGrid
                     Spacer()
                     
-                    // 여기부터 수정함
+                    // 06/22 minji 여기부터 수정함
                     Button(action: {
                         if isRecording {
                             speechRecognizer.stopRecording()
@@ -106,7 +106,7 @@ struct ConferenceView: View {
                         .cornerRadius(12)
                         .padding(.horizontal)
                     
-                    // 여기까지 수정함
+                    // 06/22 minji 여기까지 수정함
                     
                     HStack(spacing: 40) {
                         Image(systemName: isCameraOn ? "video.fill" : "video.slash.fill")
